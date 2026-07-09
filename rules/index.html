@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правила - ApexSphere</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <!-- Подключаем основной CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .rules-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 40px;
+            background: rgba(15, 28, 63, 0.9);
+            border-radius: 30px;
+            border: 1px solid var(--cyan);
+            backdrop-filter: blur(15px);
+            line-height: 1.6;
+            z-index: 2;
+            position: relative;
+        }
+        h1 { font-family: 'Press Start 2P', cursive; color: var(--cyan); text-align: center; font-size: 1.4rem; margin-bottom: 40px; }
+        h2 { color: var(--gold); border-bottom: 1px solid rgba(255,204,0,0.3); padding-bottom: 10px; margin-top: 30px; font-size: 1.2rem; }
+        .rule-item { margin-bottom: 15px; padding-left: 15px; border-left: 2px solid var(--cyan); font-size: 0.95rem; }
+
+        .agree-box { text-align: center; margin-top: 50px; }
+        .agree-btn {
+            background: var(--minecraft-green);
+            color: black;
+            padding: 20px 40px;
+            font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(56,224,56,0.4);
+            text-transform: uppercase;
+        }
+
+        header { display: flex; justify-content: space-between; align-items: center; }
+        .back-nav { color: var(--cyan); text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div id="particles-container"></div>
+
+<header>
+    <a href="../index.html" class="logo">ApexSphere</a>
+    <a href="../index.html" class="back-nav">← На главную</a>
+</header>
+
+<div class="rules-container reveal active">
+    <h1>Полный свод правил</h1>
+
+    <h2>1. Общие положения</h2>
+    <div class="rule-item"><strong>1.1.</strong> Заходя на сервер, вы автоматически соглашаетесь с данными правилами.</div>
+    <div class="rule-item"><strong>1.2.</strong> Незнание правил не освобождает от ответственности.</div>
+    <div class="rule-item"><strong>1.3.</strong> Администрация имеет право выносить наказание на свое усмотрение, если ситуация не описана в правилах.</div>
+
+    <h2>2. Общение и чат</h2>
+    <div class="rule-item"><strong>2.1.</strong> Оскорбления: Запрещены любые формы унижения достоинства, проявление токсичности и разжигание ненависти.</div>
+    <div class="rule-item"><strong>2.2.</strong> Мат: Чрезмерное употребление ненормативной лексики запрещено. Держите себя в руках.</div>
+    <div class="rule-item"><strong>2.3.</strong> Спам/Флуд: Запрещена отправка однотипных сообщений, капс (ВЕРХНИЙ РЕГИСТР) и бессмысленные наборы символов.</div>
+    <div class="rule-item"><strong>2.4.</strong> Контент 18+: Публикация шок-контента, порнографии или сцен насилия строго запрещена (бан без предупреждения).</div>
+    <div class="rule-item"><strong>2.5.</strong> Язык: Основной язык общения — русский и английский.</div>
+
+    <h2>3. Реклама и ссылки</h2>
+    <div class="rule-item"><strong>3.1.</strong> Запрещена любая реклама сторонних проектов, серверов Minecraft или Discord-серверов без согласования.</div>
+    <div class="rule-item"><strong>3.2.</strong> Запрещено распространение вредоносного ПО или фишинговых ссылок.</div>
+
+    <h2>4. Никнеймы и Профили</h2>
+    <div class="rule-item"><strong>4.1.</strong> Никнейм не должен содержать мата, оскорблений или упоминания сторонних ресурсов.</div>
+    <div class="rule-item"><strong>4.2.</strong> Запрещена выдача себя за администрацию (фейк-ники).</div>
+
+    <h2>5. Поддержка и Тикеты</h2>
+    <div class="rule-item"><strong>5.1.</strong> Для решения проблем используйте систему тикетов. Запрещен спам в личные сообщения администрации. (Толка от спама не будет)</div>
+
+    <div class="agree-box">
+        <a href="../index.html#servers" class="btn-base agree-btn">Я полностью согласен и принимаю правила проекта.</a>
+    </div>
+
+    <center><p style="opacity: 0.4; margin-top: 40px;">Последнее обновление свода: Март 2026</p></center>
+</div>
+
+<!-- Скрипт для частиц и анимации -->
+<script src="../js/script.js"></script>
+</body>
+</html>
