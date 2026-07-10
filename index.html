@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApexSphere - Minecraft Project</title>
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <title>ApexSphere — Пространство игровых возможностей</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <meta name="description" content="Официальный сайт Minecraft проекта ApexSphere. Уникальные игровые режимы, отзывчивое комьюнити и комфортная игра. Заходи, копируй IP и играй с нами!">
+
+    <!-- Open Graph (Исправлен og:image, роботам нужен прямой путь к картинке) -->
+    <meta property="og:title" content="ApexSphere — Пространство игровых возможностей">
+    <meta property="og:description" content="Официальный сайт Minecraft-проекта ApexSphere. Заходи, копируй IP и играй вместе с нами!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://apexsphere.ru">
+    <meta property="og:url" content="https://apexsphere.ru">
+
+    <!-- Исправлена ссылка на шрифты Google (добавлен /css2) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 <div id="particles-container"></div>
 
@@ -18,6 +33,7 @@
             <li><a href="#servers" data-en="Servers" data-ru="Сервера">Сервера</a></li>
             <li><a href="#shop" data-en="Services" data-ru="Услуги">Услуги</a></li>
             <li><a href="rules/index.html" data-en="Rules" data-ru="Правила">Правила</a></li>
+            <li><a href="#contacts" class="nav-link">Контакты</a></li>
             <li><a href="#support" data-en="Support" data-ru="Поддержка">Поддержка</a></li>
         </ul>
     </nav>
@@ -36,34 +52,83 @@
 </section>
 
 <section id="servers" class="reveal">
-    <h2>Наш сервер</h2>
+    <h2>Наши сервера</h2>
     <div class="grid">
-    <div class="card"><h3>Vanilla 26.1.2</h3><p>Ванильное выживание, а может и не ванильное, кто знает :)</p></div>
-</div>
+        <!-- Интегрирована кнопка быстрой копии IP -->
+        <div class="card server-card">
+            <h3>Vanilla 26.1.2</h3>
+            <p>Классическое выживание без лишних модов и приватов. Идеальный баланс, отзывчивое комьюнити, стабильный ТПС и полная свобода для твоих построек.</p>
+            <p>Адрес сервера:</p>
+            <div class="ip-copy-wrapper" onclick="copyIP('play.apexsphere.ru', this)">
+                <span class="ip-clickable">play.apexsphere.ru</span>
+                <span class="copy-tooltip">Нажми, чтобы скопировать</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Скоро</h3>
+            <p>Новый секретный режим. Пространство возможностей расширяется...</p>
+        </div>
+    </div>
 </section>
 
 <section id="shop" class="reveal">
     <h2>Магазин услуг</h2>
     <div class="grid">
         <div class="card donate-card">
-            <h3>VIP Статус</h3><span class="price">250₽</span>
-            <a href="#" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить (РФ/СНГ)</a>
-            <a href="#" target="_blank" class="btn-base buy-btn-alt">Купить на FunPay</a>
+            <h3>VIP Статус</h3>
+            <p class="donate-desc">Выделяйся среди игроков: уникальный префикс, цветной ник в табе.</p>
+            <span class="price">250₽</span>
+            <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
         </div>
         <div class="card donate-card">
-            <h3>Premium</h3><span class="price">500₽</span>
-            <a href="#" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить (РФ/СНГ)</a>
-            <a href="#" target="_blank" class="btn-base buy-btn-alt">Купить на FunPay</a>
+            <h3>Premium</h3>
+            <p class="donate-desc">Максимальный комфорт: все функции VIP, доступ к собственным цветным тегам и права на кастомизацию.</p>
+            <span class="price">500₽</span>
+            <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
         </div>
         <div class="card donate-card">
-            <h3>Разбан</h3><p style="font-size:0.8rem; opacity:0.7;">Вас не разбанят если были забанены по IP</p><span class="price">100₽</span>
-            <a href="#" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить (РФ/СНГ)</a>
-            <a href="#" target="_blank" class="btn-base buy-btn-alt">Купить на FunPay</a>
+            <h3>Разбан</h3>
+            <p class="donate-desc">Разбан вашего аккаунта. (Вас не разбанят, если блокировка была выдана по IP)</p>
+            <span class="price">100₽</span>
+            <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
         </div>
         <div class="card donate-card">
-            <h3>Размут</h3><span class="price">50₽</span>
-            <a href="#" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить (РФ/СНГ)</a>
-            <a href="#" target="_blank" class="btn-base buy-btn-alt">Купить на FunPay</a>
+            <h3>Размут</h3>
+            <p class="donate-desc">Моментальное снятие ограничений текстового и голосового чата. (Вас не размутят, если блокировка была выдана по IP)</p>
+            <span class="price">50₽</span>
+            <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
+        </div>
+    </div>
+</section>
+
+<!-- Секция Соцсетей -->
+<section id="contacts" class="contacts-section">
+    <div class="contacts-container">
+        <h2 class="contacts-title">Наши соцсети</h2>
+        <p class="contacts-subtitle">Присоединяйся к нашему сообществу, общайся и следи за обновлениями!</p>
+
+        <!-- Класс social-row выстроит карточки в строчку -->
+        <div class="social-row">
+            <!-- Группа ТГ -->
+            <a href="https://t.me" target="_blank" class="contact-card telegram">
+                <div class="contact-icon">📢</div>
+                <h3>Telegram Канал</h3>
+                <p>Важные новости проекта</p>
+            </a>
+
+            <!-- Чат ТГ -->
+            <a href="https://t.me" target="_blank" class="contact-card telegram-chat">
+                <div class="contact-icon">💬</div>
+                <h3>Telegram Чат</h3>
+                <p>Ламповое общение</p>
+            </a>
+
+            <!-- Дискорд -->
+            <a href="https://discord.gg" target="_blank" class="contact-card discord">
+                <div class="contact-icon">🎮</div>
+                <h3>Discord Сервер</h3>
+                <p>Голосовая связь и тикеты</p>
+            </a>
         </div>
     </div>
 </section>
@@ -73,19 +138,6 @@
     <p id="support-p">Возникли вопросы? Мы ответим в Discord.</p>
     <div class="social-box"><a href="https://discord.gg/QeWAYQmsEK" target="_blank" class="btn-base social-link ds">Создать тикет</a></div>
 </section>
-
-<!--&lt;!&ndash; Уведомление &ndash;&gt;-->
-<!--<div id="notification" class="notification">-->
-<!--    <div class="notif-content">-->
-<!--        <span class="notif-icon">🚀</span>-->
-<!--        <div class="notif-text">-->
-<!--            <strong>ApexSphere Project</strong>-->
-<!--            <p id="notif-desc">Мы дорабатываем и скоро откроемся! Следите за новостями.</p>-->
-<!--            <a href="https://discord.gg/QeWAYQmsEK" target="_blank" class="notif-link">В наш Discord →</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <button class="notif-close" onclick="closeNotif()">×</button>-->
-<!--</div>-->
 
 <!-- Виджет статуса -->
 <div class="status-widget">
@@ -97,6 +149,22 @@
     <p>Author: <strong>twaiger</strong> | &copy; 2026 <strong>ApexSphere Project</strong> | <a href="rules/index.html" style="color: var(--cyan); text-decoration: none; margin-left: 10px;">📜 Правила проекта</a></p>
 </footer>
 
+<!-- Скрипт копирования IP -->
+<script>
+    function copyIP(ip, element) {
+        navigator.clipboard.writeText(ip).then(() => {
+            const tooltip = element.querySelector('.copy-tooltip');
+            const originalText = tooltip.innerText;
+            tooltip.innerText = 'Скопировано! ⚡';
+            element.classList.add('copied');
+
+            setTimeout(() => {
+                tooltip.innerText = originalText;
+                element.classList.remove('copied');
+            }, 2000);
+        });
+    }
+</script>
 <script src="js/script.js"></script>
 </body>
 </html>

@@ -29,6 +29,7 @@ nav a:hover { color: var(--cyan); }
 
 .download-btn { background: var(--minecraft-green); color: #000; padding: 12px 24px; box-shadow: 0 5px 0 #218838; }
 .buy-btn-main { background: var(--gold); color: #000; padding: 14px 20px; width: 90%; box-shadow: 0 5px 0 #b38f00; margin-bottom: 12px; font-size: 0.95rem; }
+.buy-btn-main.disabled { opacity: 0.6; cursor: not-allowed; pointer-events: none; box-shadow: none; background: #555; color: #aaa; }
 .buy-btn-alt { background: rgba(100,255,218,0.05); color: var(--cyan); border: 2px solid var(--cyan)!important; padding: 10px 20px; width: 90%; border-radius: 15px; font-size: 0.85rem; }
 
 /* Сетка и карточки */
@@ -36,6 +37,14 @@ nav a:hover { color: var(--cyan); }
 .card { background: rgba(15, 28, 63, 0.8); padding: 40px; border-radius: 25px; text-align: center; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; backdrop-filter: blur(5px); }
 .card:hover { border-color: var(--cyan); transform: translateY(-10px); }
 .price { font-size: 2.2rem; color: var(--gold); display: block; margin: 15px 0; font-weight: 800; }
+.donate-desc { font-size: 0.9rem; color: #aaa; margin: 10px 0; min-height: 40px; }
+
+/* Кнопка быстрой копии IP на карточке сервера */
+.ip-copy-wrapper { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px 15px; border-radius: 12px; display: inline-block; cursor: pointer; transition: all 0.3s ease; margin-top: 10px; }
+.ip-copy-wrapper:hover { background: rgba(100, 255, 218, 0.1); border-color: var(--cyan); }
+.ip-clickable { font-weight: bold; color: #fff; display: block; font-size: 1.1rem; }
+.copy-tooltip { font-size: 11px; color: #888; display: block; margin-top: 4px; transition: color 0.3s; }
+.ip-copy-wrapper.copied .copy-tooltip { color: var(--minecraft-green); font-weight: bold; }
 
 /* Соцсети (Центровка зафиксирована) */
 .social-box { display: flex; gap: 20px; margin-top: 30px; justify-content: center; width: 100%; }
@@ -67,3 +76,26 @@ section { padding: 120px 10% 100px; display: flex; flex-direction: column; align
 footer { text-align: center; padding: 60px; opacity: 0.5; }
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
+
+/* СНЕС ДЛЯ СТРОКИ СТИЛИ ТВОИХ КОНТАКТОВ И СДЕЛАЛ КРАСИВЫЕ СОЦСЕТИ */
+.contacts-section { padding: 80px 20px; background: var(--dark-blue); color: #ffffff; text-align: center; width: 100%; box-sizing: border-box; }
+.contacts-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+.contacts-title { font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--cyan); font-family: 'Ubuntu', sans-serif; font-weight: 700; }
+.contacts-subtitle { color: #aaaaaa; margin-bottom: 40px; font-size: 1.1rem; }
+
+/* Контейнер-строка для карточек */
+.social-row { display: flex; justify-content: center; gap: 25px; width: 100%; flex-wrap: wrap; }
+
+/* Обновленный стиль карточек (ТВОЙ ЛЮБИМЫЙ ЦВЕТ СОХРАНЕН) */
+.contact-card { background: #0F172A; border: 2px solid #2d2d2d; border-radius: 20px; padding: 35px 25px; text-decoration: none; color: #ffffff; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 280px; max-width: 340px; backdrop-filter: blur(5px); }
+.contact-icon { font-size: 3rem; margin-bottom: 15px; transition: transform 0.3s ease; }
+.contact-card h3 { font-size: 1.4rem; margin: 10px 0; font-weight: 700; }
+.contact-card p { font-size: 0.95rem; color: #aaaaaa; margin: 0; }
+
+/* Эффекты наведения со свечением под переменные */
+.contact-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6); }
+.contact-card:hover .contact-icon { transform: scale(1.15); }
+
+.contact-card.telegram:hover { border-color: var(--telegram); box-shadow: 0 0 25px rgba(0, 136, 204, 0.35); }
+.contact-card.telegram-chat:hover { border-color: #24a1de; box-shadow: 0 0 25px rgba(36, 161, 222, 0.35); }
+.contact-card.discord:hover { border-color: var(--discord); box-shadow: 0 0 25px rgba(88, 101, 242, 0.35); }
