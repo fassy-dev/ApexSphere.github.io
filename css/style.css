@@ -77,7 +77,15 @@ nav a:hover { color: var(--cyan); }
 #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 .particle { position: absolute; border-radius: 2px; animation: float-up linear infinite; }
 @keyframes float-up { from { transform: translateY(110vh); opacity: 0; } to { transform: translateY(-10vh); opacity: 0; } }
-#main { background: linear-gradient(to bottom, rgba(5,11,26,0.1), var(--dark-blue) 100%), url('../img/background.jpg') center/cover; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+#main {
+    /* Убрали жесткий градиент к темно-синему, оставили только прозрачность */
+    background: linear-gradient(to bottom, rgba(5,11,26,0.2), rgba(5,11,26,0.2));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* #main { background: linear-gradient(to bottom, rgba(5,11,26,0.1), var(--dark-blue) 100%), url('../img/background.jpg') center/cover; min-height: 100vh; display: flex; align-items: center; justify-content: center; } */
 .hero-content { text-align: center; background: rgba(5,11,26,0.75); padding: 50px; border-radius: 30px; backdrop-filter: blur(10px); border: 1px solid rgba(100,255,218,0.2); max-width: 850px; z-index: 10; }
 h1 { font-family: 'Press Start 2P', cursive; font-size: 2.8rem; color: var(--cyan); margin-bottom: 20px; }
 section { padding: 120px 10% 100px; display: flex; flex-direction: column; align-items: center; }
@@ -86,7 +94,15 @@ footer { text-align: center; padding: 60px; opacity: 0.5; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
 /* СНЕС ДЛЯ СТРОКИ СТИЛИ ТВОИХ КОНТАКТОВ И СДЕЛАЛ КРАСИВЫЕ СОЦСЕТИ */
-.contacts-section { padding: 80px 20px; background: var(--dark-blue); color: #ffffff; text-align: center; width: 100%; box-sizing: border-box; }
+.contacts-section {
+    padding: 80px 20px;
+    /* МЕНЯЕМ НА ПРОЗРАЧНЫЙ ФОН, ЧТОБЫ БЫЛО ВИДНО ФОТО */
+    background: transparent;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
 .contacts-container { max-width: 1200px; margin: 0 auto; width: 100%; }
 .contacts-title { font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--cyan); font-family: 'Ubuntu', sans-serif; font-weight: 700; }
 .contacts-subtitle { color: #aaaaaa; margin-bottom: 40px; font-size: 1.1rem; }
@@ -107,3 +123,67 @@ footer { text-align: center; padding: 60px; opacity: 0.5; }
 .contact-card.telegram:hover { border-color: var(--telegram); box-shadow: 0 0 25px rgba(0, 136, 204, 0.35); }
 .contact-card.telegram-chat:hover { border-color: #24a1de; box-shadow: 0 0 25px rgba(36, 161, 222, 0.35); }
 .contact-card.discord:hover { border-color: var(--discord); box-shadow: 0 0 25px rgba(88, 101, 242, 0.35); }
+
+/* Стиль для контента страницы правил */
+.rules-content {
+    max-width: 900px;
+    margin: 60px auto;
+    background: rgba(15, 28, 63, 0.75); /* Полупрозрачный темно-синий */
+    padding: 50px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.rules-content h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem;
+    color: var(--cyan);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Стили для плашки онлайна на карточке */
+.online-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.status-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+/* Если сервер ОНЛАЙН (Зеленый неон) */
+.online-status-badge.online {
+    background: rgba(56, 224, 56, 0.1);
+    border-color: rgba(56, 224, 56, 0.3);
+    color: var(--minecraft-green);
+    box-shadow: 0 0 10px rgba(56, 224, 56, 0.1);
+}
+.online-status-badge.online .status-indicator-dot {
+    background: var(--minecraft-green);
+    box-shadow: 0 0 8px var(--minecraft-green);
+    animation: pulse 1.8s infinite;
+}
+
+/* Если сервер ОФФЛАЙН или ЗАГРУЖАЕТСЯ (Красный неон) */
+.online-status-badge.offline {
+    background: rgba(255, 75, 75, 0.1);
+    border-color: rgba(255, 75, 75, 0.3);
+    color: #ff4b4b;
+}
+.online-status-badge.offline .status-indicator-dot {
+    background: #ff4b4b;
+    box-shadow: 0 0 8px #ff4b4b;
+}

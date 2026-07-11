@@ -7,14 +7,14 @@
     <link rel="icon" type="image/png" href="img/logo.png">
     <meta name="description" content="Официальный сайт Minecraft проекта ApexSphere. Уникальные игровые режимы, отзывчивое комьюнити и комфортная игра. Заходи, копируй IP и играй с нами!">
 
-    <!-- Open Graph (Исправлен og:image, роботам нужен прямой путь к картинке) -->
+
     <meta property="og:title" content="ApexSphere — Пространство игровых возможностей">
     <meta property="og:description" content="Официальный сайт Minecraft-проекта ApexSphere. Заходи, копируй IP и играй вместе с нами!">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://apexsphere.ru">
     <meta property="og:url" content="https://apexsphere.ru">
 
-    <!-- Исправлена ссылка на шрифты Google (добавлен /css2) -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
@@ -46,6 +46,7 @@
         <div class="social-box">
             <a href="https://discord.gg/QeWAYQmsEK" target="_blank" class="btn-base social-link ds">Discord</a>
             <a href="https://t.me/ApexSphereMine" target="_blank" class="btn-base social-link tg">Telegram</a>
+            <a href="https://t.me/ApexSphereChat" target="_blank" class="btn-base social-link tg">Telegram чат</a>
         </div>
     </div>
 </section>
@@ -53,16 +54,21 @@
 <section id="servers" class="reveal">
     <h2>Наши сервера</h2>
     <div class="grid">
-        <!-- Интегрирована кнопка быстрой копии IP -->
         <div class="card server-card">
             <h3>Vanilla 26.1.2</h3>
-            <p>Классическое выживание без лишних модов и приватов. Идеальный баланс, отзывчивое комьюнити, стабильный ТПС и полная свобода для твоих построек.</p>
+
+            <div class="online-status-badge offline" id="vanilla-status">
+                <span class="status-indicator-dot"></span>
+                <span class="status-count-text">Загрузка...</span>
+            </div>
+            <p class="donate-desc">Классическое выживание без лишних модов и приватов. Идеальный баланс, отзывчивое комьюнити, стабильный ТПС и полная свобода для твоих построек.</p>
             <p>Адрес сервера:</p>
             <div class="ip-copy-wrapper" onclick="copyIP('play.apexsphere.ru', this)">
                 <span class="ip-clickable">play.apexsphere.ru</span>
                 <span class="copy-tooltip">Нажми, чтобы скопировать</span>
             </div>
         </div>
+
         <div class="card">
             <h3>Скоро</h3>
             <p>Новый секретный режим. Пространство возможностей расширяется...</p>
@@ -76,54 +82,116 @@
         <div class="card donate-card">
             <h3>VIP Статус</h3>
             <p class="donate-desc">Выделяйся среди игроков: уникальный префикс, цветной ник в табе.</p>
+            <details class="donate-spoiler">
+                <summary>Что входит в VIP? ✨</summary>
+                <div class="spoiler-content">
+                    <ul>
+                        <li>Свой суффикс "&eVip"</li>
+                        <li>Свой префикс "&e🔅&f"</li>
+                        <li>Включение кастомной музыки через диски</li>
+                        <li>Поиск любых треков в голосовом чате</li>
+                        <li>Перезапись и очистка музыкальных дисков</li>
+                        <li>Управление проигрывателями (отмена треков)</li>
+                        <li>Объявления на весь сервер (<code>/broadcast</code>)</li>
+                        <li>Виртуальный Эндер-сундук (<code>/ec</code>)</li>
+                        <li>Виртуальное точило (<code>/grindstone</code>)</li>
+                        <li>Возможность сидеть где угодно (<code>/sit</code>)</li>
+                        <li>Объявления на весь сервер (<code>/broadcast</code>)</li>
+                    </ul>
+                </div>
+            </details>
+
             <span class="price">250₽</span>
-            <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
+            <a href="https://funpay.com/lots/offer?id=72651450" target="_blank" class="btn-base buy-btn-main enabled">🛒 Оплатить на FunPay (РФ/СНГ)</a>
         </div>
         <div class="card donate-card">
             <h3>Premium</h3>
-            <p class="donate-desc">Максимальный комфорт: все функции VIP, доступ к собственным цветным тегам и права на кастомизацию.</p>
+            <p class="donate-desc">Максимальный комфорт: все фишки VIP, доступ к созданию собственных цветных тегов.</p>
+
+
+            <details class="donate-spoiler">
+                <summary>Что входит в Premium? 🔥</summary>
+                <div class="spoiler-content">
+                    <ul>
+                        <li>Все возможности VIP статуса</li>
+                        <li>Свой суффикс "&6Premium"</li>
+                        <li>Свой префикс "&6⭐&f"</li>
+                        <li>Доступ к команде полёта (режим <code>/fly</code>)</li>
+                        <li>Переключение в режим наблюдателя (<code>/gm 3</code>)</li>
+                        <li>Модерация голосового чата (права на <code>/pv mute</code>)</li>
+                        <li>Объявления на весь сервер (<code>/broadcast</code>)</li>
+                        <li>Возможность лежать и ползать (<code>/lay</code>, <code>/crawl</code>)</li>
+                        <li>Анимация кручения персонажа (<code>/spin</code>)</li>
+                        <li>Посадка на игроков и ступеньки по клику ПКМ</li>
+                    </ul>
+                </div>
+            </details>
+
             <span class="price">500₽</span>
+            <a href="https://funpay.com/lots/offer?id=72651375" target="_blank" class="btn-base buy-btn-main enabled">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+        </div>
+
+
+        <!-- НОВЫЙ ТОВАР: FLY НА 1 ДЕНЬ -->
+        <div class="card donate-card">
+            <h3>Режим Полёта</h3>
+            <p class="donate-desc">Тест-драйв Premium: доступ к команде <code>/fly</code> ровно на 24 часа для любых твоих целей.</p>
+
+            <details class="donate-spoiler">
+                <summary>Зачем нужен Fly? 🕊️</summary>
+                <div class="spoiler-content">
+                    <ul>
+                        <li>Быстрая постройка масштабных проектов и крыш</li>
+                        <li>Безопасное перемещение по миру без урона от падений</li>
+                        <li>Удобный поиск красивых локаций для базы с высоты</li>
+                        <li>Действует ровно 1 день (24 часа) с момента покупки</li>
+                    </ul>
+                </div>
+            </details>
+
+            <span class="price">25₽</span>
             <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
         </div>
+
+
         <div class="card donate-card">
             <h3>Разбан</h3>
             <p class="donate-desc">Разбан вашего аккаунта. (Вас не разбанят, если блокировка была выдана по IP)</p>
             <span class="price">100₽</span>
-            <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
+            <a href="https://funpay.com/lots/offer?id=72651561" target="_blank" class="btn-base buy-btn-main enabled">🛒 Оплатить на FunPay (РФ/СНГ) </a>
         </div>
         <div class="card donate-card">
             <h3>Размут</h3>
             <p class="donate-desc">Моментальное снятие ограничений текстового и голосового чата. (Вас не размутят, если блокировка была выдана по IP)</p>
             <span class="price">50₽</span>
-            <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ) (Недоступно)</a>
+            <a href="https://funpay.com/lots/offer?id=72632098" target="_blank" class="btn-base buy-btn-main enabled">🛒 Оплатить на FunPay (РФ/СНГ)</a>
         </div>
     </div>
 </section>
 
-<!-- Секция Соцсетей -->
+
 <section id="contacts" class="contacts-section">
     <div class="contacts-container">
         <h2 class="contacts-title">Наши соцсети</h2>
         <p class="contacts-subtitle">Присоединяйся к нашему сообществу, общайся и следи за обновлениями!</p>
 
-        <!-- Класс social-row выстроит карточки в строчку -->
+
         <div class="social-row">
-            <!-- Группа ТГ -->
-            <a href="https://t.me" target="_blank" class="contact-card telegram">
+            <a href="https://t.me/ApexSphereMine" target="_blank" class="contact-card telegram">
                 <div class="contact-icon">📢</div>
                 <h3>Telegram Канал</h3>
                 <p>Важные новости проекта</p>
             </a>
 
-            <!-- Чат ТГ -->
-            <a href="https://t.me" target="_blank" class="contact-card telegram-chat">
+
+            <a href="https://t.me/ApexSphereChat" target="_blank" class="contact-card telegram-chat">
                 <div class="contact-icon">💬</div>
                 <h3>Telegram Чат</h3>
                 <p>Ламповое общение</p>
             </a>
 
-            <!-- Дискорд -->
-            <a href="https://discord.gg" target="_blank" class="contact-card discord">
+
+            <a href="https://discord.gg/Eejm63xtJp" target="_blank" class="contact-card discord">
                 <div class="contact-icon">🎮</div>
                 <h3>Discord Сервер</h3>
                 <p>Голосовая связь и тикеты</p>
@@ -138,7 +206,7 @@
     <div class="social-box"><a href="https://discord.gg/QeWAYQmsEK" target="_blank" class="btn-base social-link ds">Создать тикет</a></div>
 </section>
 
-<!-- Виджет статуса -->
+
 <div class="status-widget">
     <div class="status-dot"></div>
     <span id="status-text"><strong>ApexSphere:</strong> Сервер открыт и ждет только тебя!</span>
@@ -148,7 +216,7 @@
     <p>Author: <strong>twaiger</strong> | &copy; 2026 <strong>ApexSphere Project</strong> | <a href="rules/index.html" style="color: var(--cyan); text-decoration: none; margin-left: 10px;">📜 Правила проекта</a></p>
 </footer>
 
-<!-- Скрипт копирования IP -->
+
 <script>
     function copyIP(ip, element) {
         navigator.clipboard.writeText(ip).then(() => {

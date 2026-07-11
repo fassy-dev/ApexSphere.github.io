@@ -1,4 +1,3 @@
-// 1. ЧАСТИЦЫ
 function createParticles() {
     const container = document.getElementById('particles-container');
     if (!container) return;
@@ -17,7 +16,7 @@ function createParticles() {
 }
 createParticles();
 
-// 2. СКРОЛЛ-АНИМАЦИЯ И ПОКАЗ УВЕДОМЛЕНИЯ
+
 function reveal() {
     let reveals = document.querySelectorAll(".reveal");
     reveals.forEach(r => {
@@ -41,7 +40,7 @@ function closeNotif() {
 window.addEventListener("scroll", reveal);
 window.onload = () => { reveal(); showNotif(); };
 
-// 3. ПЕРЕВОД
+
 const userLang = navigator.language || navigator.userLanguage;
 if (!userLang.startsWith('ru')) {
     document.querySelectorAll('nav a').forEach(el => {
@@ -67,3 +66,116 @@ if (!userLang.startsWith('ru')) {
 }
 
 console.log("%cApexSphere", "color: #64ffda; font-size: 40px; font-weight: bold; text-shadow: 3px 3px 0 #000;");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    const checkReveal = () => {
+        const triggerBottom = window.innerHeight * 0.85;
+
+        revealElements.forEach(el => {
+            const elTop = el.getBoundingClientRect().top;
+            if (elTop < triggerBottom) {
+                el.classList.add("active");
+            }
+        });
+    };
+
+
+    window.addEventListener("scroll", checkReveal);
+    checkReveal();
+
+
+    const navLinks = document.querySelectorAll("header nav a, header .logo");
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+            const targetId = link.getAttribute("href");
+
+
+            if (targetId.startsWith("#")) {
+                e.preventDefault();
+                const targetSection = document.querySelector(targetId);
+
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            }
+        });
+    });
+
+    // 3. ГЕНЕРАЦИЯ ЧАСТИЦ (ДЛЯ PARTICLES-CONTAINER)
+    const particlesContainer = document.getElementById("particles-container");
+    if (particlesContainer) {
+        const createParticle = () => {
+            const particle = document.createElement("div");
+            particle.classList.add("particle");
+
+
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.background = Math.random() > 0.5 ? "var(--cyan)" : "var(--accent-blue)";
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+
+            const duration = Math.random() * 5 + 5;
+            particle.style.animationDuration = `${duration}s`;
+
+            particlesContainer.appendChild(particle);
+
+
+            setTimeout(() => {
+                particle.remove();
+            }, duration * 1000);
+        };
+
+
+        setInterval(createParticle, 300);
+    }
+});
+
+// ФУНКЦИЯ ДЛЯ АВТО-ОПРОСА ОНЛАЙНА СЕРВЕРА
+function updateServerOnline() {
+    // Твой реальный технический адрес и порт хостинга
+    const technicalIP = 'play.kek.team:25621';
+    const statusBadge = document.getElementById('vanilla-status');
+    const statusText = statusBadge.querySelector('.status-count-text');
+
+    // Используем современное и стабильное API от mcstatus.io
+    fetch(`https://api.mcstatus.io/v2/status/java/${technicalIP}`)
+        .then(response => {
+            if (!response.ok) throw new Error('Сеть не отвечает');
+            return response.json();
+        })
+        .then(data => {
+            if (data.online) {
+                // Если сервер работает — включаем зеленый статус и пишем онлайн
+                statusBadge.classList.remove('offline');
+                statusBadge.classList.add('online');
+                statusText.innerHTML = `Онлайн: ${data.players.online} / ${data.players.max}`;
+            } else {
+                // Если сервер выключен
+                statusBadge.classList.remove('online');
+                statusBadge.classList.add('offline');
+                statusText.innerText = 'Оффлайн';
+            }
+        })
+        .catch(err => {
+            console.error('Ошибка мониторинга:', err);
+            statusBadge.classList.remove('online');
+            statusBadge.classList.add('offline');
+            statusText.innerText = 'Оффлайн'; // Если API упал, пишем что оффлайн
+        });
+}
+
+// Запускаем мониторинг сразу при загрузке страницы
+document.addEventListener("DOMContentLoaded", () => {
+    updateServerOnline();
+    // Обновляем данные каждые 30 секунд, чтобы не спамить запросами, но держать инфу свежей
+    setInterval(updateServerOnline, 30000);
+});
