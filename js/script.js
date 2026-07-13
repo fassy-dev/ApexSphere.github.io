@@ -179,3 +179,66 @@ document.addEventListener("DOMContentLoaded", () => {
     // Обновляем данные каждые 30 секунд, чтобы не спамить запросами, но держать инфу свежей
     setInterval(updateServerOnline, 30000);
 });
+
+const faqQuestions = document.querySelectorAll(".faq-question");
+faqQuestions.forEach(q => {
+    q.addEventListener("click", () => {
+        const item = q.parentElement;
+        item.classList.toggle("active");
+    });
+});
+
+// ==========================================================================
+// ШТУЧКА: ЛОГИКА ТРЕХРЕЖИМНОГО ПЕРЕКЛЮЧАТЕЛЯ ТЕМЫ (ТЕМНАЯ / СВЕТЛАЯ / СИСТЕМНАЯ)
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const themeBtn = document.getElementById("theme-toggle-btn");
+    if (!themeBtn) return;
+    const themeIcon = themeBtn.querySelector(".theme-icon-slot");
+
+    // Доступные режимы: 'dark', 'light', 'system'
+    let currentTheme = localStorage.getItem("apex-theme") || "dark";
+
+    // Функция применения темы
+    function applyTheme(theme) {
+        if (theme === "system") {
+            const isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.documentElement.setAttribute("data-theme", isSystemDark ? "dark" : "light");
+            themeIcon.innerText = "🖥️";
+            themeBtn.setAttribute("title", "Тема: Как на устройстве");
+        } else if (theme === "light") {
+            document.documentElement.setAttribute("data-theme", "light");
+            themeIcon.innerText = "☀️";
+            themeBtn.setAttribute("title", "Тема: Светлая");
+        } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+            themeIcon.innerText = "🌙";
+            themeBtn.setAttribute("title", "Тема: Тёмная");
+        }
+    }
+
+    // Клик по кнопке — переключаем по кругу: dark -> light -> system -> dark
+    themeBtn.addEventListener("click", () => {
+        if (currentTheme === "dark") {
+            currentTheme = "light";
+        } else if (currentTheme === "light") {
+            currentTheme = "system";
+        } else {
+            currentTheme = "dark";
+        }
+
+        localStorage.setItem("apex-theme", currentTheme);
+        applyTheme(currentTheme);
+    });
+
+    // Слушаем изменения системных настроек устройства в реальном времени
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if (currentTheme === "system") {
+            applyTheme("system");
+        }
+    });
+
+    // Инициализация при первой загрузке страницы
+    applyTheme(currentTheme);
+});
+
