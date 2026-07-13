@@ -1,3 +1,7 @@
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
 function createParticles() {
     const container = document.getElementById('particles-container');
     if (!container) return;
