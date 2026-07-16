@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexSphere — Оформление заказа</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=1">
+    <style>
+        .pay-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .pay-box {
+            background: rgba(15, 28, 63, 0.85);
+            border: 2px solid var(--cyan);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .pay-box h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.4rem;
+            color: var(--cyan);
+            margin-bottom: 25px;
+        }
+        .order-info {
+            background: rgba(5, 11, 26, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+        .order-row strong { color: var(--gold); }
+        .order-desc-text {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.4;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: var(--cyan);
+        }
+        .input-group input {
+            width: 100%;
+            padding: 14px 20px;
+            background: rgba(5, 11, 26, 0.8);
+            border: 2px solid var(--accent-blue);
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+        }
+        .pay-final-btn {
+            background: var(--minecraft-green);
+            color: #000;
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 0 #218838;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .pay-final-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 3px 0 #218838;
+        }
+        .pay-final-btn:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .back-link:hover { color: var(--cyan); }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<section class="pay-section">
+    <div class="pay-box">
+        <h2>Оплата</h2>
+
+        <!-- Блок информации о заказе (заполняется автоматически) -->
+        <div class="order-info">
+            <div class="order-row">
+                <span>Товар:</span>
+                <span id="order-item">Загрузка...</span>
+            </div>
+            <div class="order-row">
+                <span>К оплате:</span>
+                <strong><span id="order-price">0</span> ₽</strong>
+            </div>
+            <div id="order-desc" class="order-desc-text">Описание подгружается...</div>
+        </div>
+
+        <!-- Форма для ввода ника -->
+        <form id="payment-form" onsubmit="processPayment(e)">
+            <div class="input-group">
+                <label for="nickname">Введите ваш игровой никнейм:</label>
+                <input type="text" id="nickname" required placeholder="Например: Fassykite" autocomplete="off">
+            </div>
+
+            <button type="submit" class="pay-final-btn">Перейти к оплате СБП</button>
+        </form>
+
+        <a href="index.html#shop" class="back-link">← Вернуться в магазин</a>
+    </div>
+</section>
+
+<!-- Скрипт считывания параметров из URL и обработки платежа -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Получаем параметры из ссылки
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemName = urlParams.get('item') || 'Услуга';
+        const itemPrice = urlParams.get('price') || '0';
+        const itemDesc = urlParams.get('desc') || 'Описание услуги сервера ApexSphere.';
+
+        // Записываем их в текстовые блоки на странице
+        document.getElementById('order-item').innerText = itemName;
+        document.getElementById('order-price').innerText = itemPrice;
+        document.getElementById('order-desc').innerText = itemDesc;
+    });
+
+    // Логика нажатия на кнопку "Перейти к оплате СБП"
+    document.getElementById('payment-form').addEventListener('submit', (e) => {
+        e.preventDefault(); // Запрещаем перезагрузку страницы
+
+        const nick = document.getElementById('nickname').value.trim();
+        const item = document.getElementById('order-item').innerText;
+        const price = document.getElementById('order-price').innerText;
+
+        // Временное уведомление, пока ты не подключишь реальную кассу (ЮKassa, Lava, EasyDonation)
+        alert(`Заказ оформлен!\nНик: ${nick}\nТовар: ${item}\nЦена: ${price} руб.\n\nЗдесь будет открываться шлюз СБП для перевода.`);
+    });
+</script>
+
+<!-- Подключаем твой JS для фоновых искр -->
+<script src="js/script.js?v=15"></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexSphere — Пространство игровых возможностей</title>
+    <link rel="icon" type="image/png" href="../img/logo.png">
+    <meta name="description" content="Официальный site Minecraft проекта ApexSphere. Уникальные игровые режимы, отзывчивое комьюнити и комфортная игра. Заходи, копируй IP и играй с нами!">
+    <meta property="og:title" content="ApexSphere — Пространство игровых возможностей">
+    <meta property="og:description" content="Официальный сайт Minecraft-проекта ApexSphere. Заходи, копируй IP и играй вместе с нами!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://apexsphere.ru">
+    <meta property="og:url" content="https://apexsphere.ru">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css?v=6">
+</head>
+
+<body>
+<canvas id="particles-canvas"></canvas>
+
+<div id="toast-notification" class="toast">
+    <span class="toast-icon">👍</span>
+    <span class="toast-msg">IP скопирован в буфер обмена!</span>
+</div>
+
+<header>
+    <a href="#main" class="logo">ApexSphere</a>
+    <nav>
+        <ul>
+            <li><a href="https://discord.com/QeWAYQmsEK" target="_blank" data-en="Discord" data-ru="Discord канал">Discord канал</a></li>
+            <li><a href="https://t.me/ApexSphereMine" target="_blank" data-en="Telegram" data-ru="Telegram канал">Telegram канал</a></li>
+            <li><a href="#support" data-en="Support" data-ru="Поддержка">Поддержка</a></li>
+        </ul>
+    </nav>
+
+    <div class="theme-switch-wrapper">
+        <button id="theme-toggle-btn" class="theme-btn" title="Переключить тему">
+            <span class="theme-icon-slot">🌙</span>
+        </button>
+    </div>
+</header>
+
+<section id="main">
+    <div class="hero-content reveal active">
+        <h1>ApexSphere</h1>
+        <p id="welcome-p">Твой идеальный мир Minecraft: От фундамента до горизонта — всё зависит только от твоей фантазии</p>
+        <div class="social-box">
+            <a href="https://discord.com/QeWAYQmsEK" target="_blank" class="btn-base social-link ds">Discord</a>
+            <a href="https://t.me/ApexSphereMine" target="_blank" class="btn-base social-link tg">Telegram</a>
+            <a href="https://t.me/ApexSphereChat" target="_blank" class="btn-base social-link tg">Telegram Чат</a>
+        </div>
+    </div>
+</section>
+
+<section id="servers" class="reveal">
+    <h2>Наш сервер</h2>
+    <div class="grid">
+
+        <div class="card server-card">
+            <h3>Vanilla 26.1.2</h3>
+            <div class="online-status-badge offline" id="vanilla-status">
+                <span class="status-indicator-dot"></span>
+                <span class="status-count-text">Загрузка...</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">📊</span>
+                <span class="stat-value" id="tps">20.0</span>
+                <span class="stat-label">TPS</span>
+            </div>
+            <p class="donate-desc">Классическое выживание и честное комьюнити. Исследуй дикий бескрайний мир, строй города и создавай свою историю без ограничений.</p>
+            <p>Адрес сервера:</p>
+            <div class="ip-copy-wrapper" onclick="copyIP('play.apexsphere.ru')">
+                <span class="ip-clickable">play.apexsphere.ru</span>
+                <span class="copy-tooltip">Нажми, чтобы скопировать</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Скоро</h3>
+            <p>Скоро новый сервер, какой, узнаете скоро...</p>
+        </div>
+
+    </div>
+</section>
+
+
+<section id="how-to" class="reveal">
+    <h2>Как начать играть</h2>
+    <div class="how-to-steps">
+        <div class="step-card">
+            <div class="step-num">1</div>
+            <h3>Запусти Minecraft</h3>
+            <p>Используй наш лаунчер или любой удобный. Нужная версия для Vanilla: <strong>26.1.2</strong></p>
+        </div>
+        <div class="step-card clickable-step" onclick="copyIP('play.apexsphere.ru')">
+            <div class="step-num">2</div>
+            <h3>Скопируй адрес</h3>
+            <p>Просто кликни по этой карточке, чтобы скопировать IP сервера Vanilla: <span class="highlight-ip">play.apexsphere.ru</span></p>
+        </div>
+        <div class="step-card">
+            <div class="step-num">3</div>
+            <h3>Заходи и играй!</h3>
+            <p>Создавай приватный город, твори, развивайся, всё в твоих руках!</p>
+        </div>
+    </div>
+</section>
+
+<section id="shop" class="reveal">
+    <h2>Магазин услуг</h2>
+
+    <div class="shop-tabs">
+        <button class="tab-btn active" onclick="switchShopTab('vanilla', this)">🔅 Сервер Vanilla</button>
+        <button class="tab-btn disabled" disabled onclick="switchShopTab('anarchy', this)">🔥 Сервер *****</button> <!-- Анархия -->
+    </div>
+
+    <div id="shop-vanilla" class="shop-content-tab active">
+        <div class="grid">
+        <div class="card donate-card">
+            <div class="card-top">
+                <h3>VIP Статус</h3>
+                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Выделяйся среди игроков: уникальный префикс, суффикс и цветной ник в табе.</p>
+
+                <details class="donate-spoiler">
+                    <summary>Что входит в VIP? ✨</summary>
+                    <div class="spoiler-content">
+                        <ul style="text-align: left; padding-left: 20px; margin: 0; font-size: 0.85rem; color: #fff;">
+                            <li style="margin-bottom: 6px;">Свой суффикс <code>"&eVip"</code>)</li>
+                            <li style="margin-bottom: 6px;">Свой префикс <code>"&e🔅&f"</code>)</li>
+                            <li style="margin-bottom: 6px;">Переименование предметов в руках (<code>/rename</code>)</li>
+                            <li style="margin-bottom: 6px;">Уникальная поза: плюхнуться на живот (<code>/bellyflop</code>)</li>
+                            <li style="margin-bottom: 6px;">Получение декоративных голов игроков (<code>/skin skull</code>)</li>
+                            <li style="margin-bottom: 6px;">Включение кастомной музыки через диски</li>
+                            <li style="margin-bottom: 6px;">Проверка кто взаимодействовал с блоком или сундуком (<code>/co inspect</code>)</li>
+                            <li style="margin-bottom: 6px;">Поиск любых треков в голосовом чате</li>
+                            <li style="margin-bottom: 6px;">Перезапись и очистка музыкальных дисков</li>
+                            <li style="margin-bottom: 6px;">Управление проигрывателями (отмена треков)</li>
+                            <li style="margin-bottom: 6px;">Виртуальный Эндер-сундук (<code>/ec</code>)</li>
+                            <li style="margin-bottom: 6px;">Виртуальное точило (<code>/grindstone</code>)</li>
+                            <li style="margin-bottom: 6px;">Возможность сидеть где угодно (<code>/sit</code>)</li>
+                            <li style="margin-bottom: 6px;">Объявления на весь сервер (<code>/broadcast</code>)</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            <span class="price">150₽</span>
+            <a href="../pay.html?item=VIP Статус&price=150&desc=Выделяйся среди игроков: уникальный префикс, суффикс и цветной ник в табе" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
+            <a href="https://funpay.com/lots/offer?id=72651450" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+        </div>
+
+
+        <div class="card donate-card">
+            <div class="card-top">
+                <h3>Premium</h3>
+                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Максимальный комфорт: все фишки VIP и множество другого!</p>
+
+                <details class="donate-spoiler">
+                    <summary>Что входит в Premium? 🔥</summary>
+                    <div class="spoiler-content">
+                        <ul style="text-align: left; padding-left: 20px; margin: 0; font-size: 0.85rem; color: #fff;">
+                            <li style="margin-bottom: 6px;"><strong>Все возможности VIP статуса</strong></li>
+                            <li style="margin-bottom: 6px;">Свой суффикс <code>"&6Premium"</code>)</li>
+                            <li style="margin-bottom: 6px;">Свой префикс <code>"&6⭐&f"</code>)</li>
+                            <li style="margin-bottom: 6px;">Смена скинов прямо на сервере (<code>/skin set</code> / <code>/skin random</code>)</li>
+                            <li style="margin-bottom: 6px;">Отключение входящих запросов на ТП (<code>/tpatoggle</code>)</li>
+                            <li style="margin-bottom: 6px;">Переименование предметов в руках (<code>/rename</code>)</li>
+                            <li style="margin-bottom: 6px;">Уникальная поза: плюхнуться на живот (<code>/bellyflop</code>)</li>
+                            <li style="margin-bottom: 6px;">Доступ к команде полёта (режим <code>/fly</code>)</li>
+                            <li style="margin-bottom: 6px;">Переключение в режим наблюдателя (<code>/gm 3</code>)</li>
+                            <li style="margin-bottom: 6px;">Модерация голосового чата (права на <code>/pv mute</code>)</li>
+                            <li style="margin-bottom: 6px;">Возможность лежать и ползать (<code>/lay</code>, <code>/crawl</code>)</li>
+                            <li style="margin-bottom: 6px;">Анимация кручения персонажа (<code>/spin</code>)</li>
+                            <li style="margin-bottom: 6px;">Посадка на игроков и ступеньки по клику ПКМ</li>
+                            <li style="margin-bottom: 6px;">Проверка кто взаимодействовал с блоком или сундуком (<code>/co inspect</code>)</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+            <span class="price">350₽</span>
+            <a href="../pay.html?item=Premium&price=350&desc=Максимальный комфорт: все фишки VIP и множество другого!" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
+            <a href="https://funpay.com/lots/offer?id=72651375" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+        </div>
+
+
+        <div class="card donate-card">
+            <div class="card-top">
+                <h3>Режим Полёта (1 день)</h3>
+                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Доступ к команде <code>/fly</code> ровно на 24 часа.</p>
+            </div>
+            <span class="price">25₽</span>
+            <a href="../pay.html?item=Режим Полёта&price=25&desc=Доступ к команде /fly ровно на 24 часа для любых твоих построек" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
+            <a href="https://funpay.com/lots/offer?id=72679394" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+        </div>
+
+
+        <div class="card donate-card">
+            <div class="card-top">
+                <h3>Разбан</h3>
+                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Вас не разбанят если были забанены по IP</p>
+            </div>
+            <span class="price">100₽</span>
+            <a href="../pay.html?item=Разбан&price=100&desc=Снятие блокировки аккаунта. Вас не разбанят, если бан выдан по IP" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
+            <a href="https://funpay.com/lots/offer?id=72651561" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+        </div>
+
+
+        <div class="card donate-card">
+            <div class="card-top">
+                <h3>Размут</h3>
+                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Размут (Снятие блокировки чата)</p>
+            </div>
+            <span class="price">50₽</span>
+            <a href="../pay.html?item=Размут&price=50&desc=Моментальное и автоматическое снятие блокировки текстового и голосового чата" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
+            <a href="https://funpay.com/lots/offer?id=72632098" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+        </div>
+    </div>
+    </div>
+
+    <div id="shop-anarchy" class="shop-content-tab">
+        <div class="grid">
+            <!-- Донат Анархии №1 -->
+            <div class="card donate-card">
+                <div class="card-top">
+                    <h3>Донат-Кейс 📦</h3>
+                    <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Испытай удачу! Кейс с крутыми донат-привилегиями, мистическими предметами и сферами.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="price">39₽</span>
+                    <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Открытие скоро...</a>
+                </div>
+            </div>
+
+            <!-- Донат Анархии №2 -->
+            <div class="card donate-card">
+                <div class="card-top">
+                    <h3>Титан [Привилегия]</h3>
+                    <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Топовый статус на Анархии: доступ к силе титанов, кит-наборы, приват 5 регионов.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="price">790₽</span>
+                    <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Открытие скоро...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="compare" class="reveal">
+    <h2>Сравнение привилегий VIP с Premium (Сервер: Vanilla 26.1.2)</h2>
+    <div class="table-container">
+        <table class="compare-table">
+            <thead>
+            <tr>
+                <th>Возможности и права</th>
+                <th class="th-vip">VIP</th>
+                <th class="th-premium">Premium</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>Уникальный префикс в чате и табе</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Проверка кто взаимодействовал с блоком или сундуком</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Уникальный суффикс после ника</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Музыка в голосовом чате (PlasmoVoice)</td><td>✅ Полный доступ</td><td>✅ Полный доступ</td></tr>
+            <tr><td>Виртуальный Эндер-сундук (<code>/ec</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Виртуальное точило (<code>/grindstone</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Возможность сидеть где угодно (<code>/sit</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            </tbody>
+
+            <tbody id="compare-more" class="hidden-rows">
+            <tr><td>Объявления на весь сервер (<code>/broadcast</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Переименование предметов (<code>/rename</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Поза: плюхнуться на живот (<code>/bellyflop</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Получение декоративных голов игроков (<code>/skin skull</code>)</td><td>❌ Нет</td><td>✅ Доступен</td></tr>
+            <tr><td>Смена игровых скинов прямо на сервере (<code>/skin</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            <tr><td>Запрет спама запросами телепортации (<code>/tpatoggle</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            <tr><td>Режим полёта на сервере (<code>/fly</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            <tr><td>Режим Наблюдателя (<code>/gm spectator</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            <tr><td>Права модератора голосового чата (<code>/pv mute</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            <tr><td>Ползать, лежать, крутиться (<code>/crawl</code>, <code>/spin</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            <tr><td>Посадка на игроков кликом мыши (ПКМ)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <button id="toggle-compare-btn" class="table-toggle-btn">🔽 Раскрыть полностью</button>
+</section>
+
+<section id="faq" class="reveal">
+    <h2>Часто задаваемые вопросы</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">❓ Нужна ли лицензия для игры?</div>
+            <div class="faq-answer"><p>Нет! Наш сервер полностью доступен как для обладателей лицензии, так и для пиратских клиентов. Заходи с любого лаунчера.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ Куда писать, если у меня пропали вещи или нашли баг?</div>
+            <div class="faq-answer"><p>Переходи в наш Discord-сервер и открывай тикет в разделе техподдержки. Наша администрация ответит тебе в течение нескольких минут!</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ Будут ли вайпы на ванильном сервере?</div>
+            <div class="faq-answer"><p>Мы стараемся делать вайпы только при выходе крупных глобальных обновлений генерации мира Minecraft, чтобы ваши постройки жили как можно дольше.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">❓ Когда появится новый сервер?</div>
+            <div class="faq-answer"><p>Сервер практически готов, но у нас не хватает онлайна, чем скорее придут множество новых игроков, тем быстрее появится новый сервер.</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="contacts" class="contacts-section">
+    <div class="contacts-container">
+        <h2 class="contacts-title">Наши контакты</h2>
+        <p class="contacts-subtitle">Присоединяйтесь к нашему сообществу и следите за обновлениями!</p>
+
+        <div class="social-row">
+            <a href="https://t.me/ApexSphereMine" target="_blank" class="contact-card telegram">
+                <div class="contact-icon">📢</div>
+                <h3>Группа Telegram</h3>
+                <p>Новости и важные объявления</p>
+            </a>
+
+            <a href="https://t.me/ApexSphereChat" target="_blank" class="contact-card telegram-chat">
+                <div class="contact-icon">💬</div>
+                <h3>Чат Telegram</h3>
+                <p>Общение с игроками и администрацией</p>
+            </a>
+
+            <a href="https://discord.com/QeWAYQmsEK" target="_blank" class="contact-card discord">
+                <div class="contact-icon">🎮</div>
+                <h3>Discord сервер</h3>
+                <p>Голосовые каналы и техподдержка</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="support" class="reveal">
+    <h2>Поддержка</h2>
+    <p id="support-p">Возникли вопросы? Мы ответим в Discord.</p>
+    <div class="social-box"><a href="https://discord.gg/QeWAYQmsEK" target="_blank" class="btn-base social-link ds">Создать тикет</a></div>
+</section>
+
+
+
+<div class="status-widget">
+    <div class="status-dot"></div>
+    <span id="status-text"><strong>ApexSphere:</strong> Сервер открыт и ждет только тебя!</span>
+</div>
+
+<footer>
+    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong> | <a href="../rules/index.html" style="color: var(--cyan); text-decoration: none; margin-left: 10px;">📜 Правила проекта</a></p>
+</footer>
+
+
+<script>
+    function copyIP(ip, element) {
+        navigator.clipboard.writeText(ip).then(() => {
+            const tooltip = element.querySelector('.copy-tooltip');
+            const originalText = tooltip.innerText;
+            tooltip.innerText = 'Скопировано! ⚡';
+            element.classList.add('copied');
+
+            setTimeout(() => {
+                tooltip.innerText = originalText;
+                element.classList.remove('copied');
+            }, 2000);
+        });
+    }
+</script>
+<script src="../js/script.js"></script>
+</body>
+</html>
