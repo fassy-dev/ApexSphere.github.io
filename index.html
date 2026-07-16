@@ -29,23 +29,17 @@
     <a href="#main" class="logo">ApexSphere</a>
     <nav>
         <ul>
-            <li><a href="#main" data-en="Home" data-ru="Главная">Главная</a></li>
-            <li><a href="#servers" data-en="Servers" data-ru="Сервера">Сервера</a></li>
-            <li><a href="#how-to" data-en="How to play" data-ru="Как начать">Как начать</a></li>
-            <li><a href="#shop" data-en="Services" data-ru="Услуги">Услуги</a></li>
-            <li><a href="#compare" data-en="Compare" data-ru="Сравнение">Сравнение</a></li>
-            <li><a href="#faq" data-en="FAQ" data-ru="Вопросы">FAQ</a></li>
-            <li><a href="rules/index.html" data-en="Rules" data-ru="Правила">Правила</a></li>
-            <li><a href="#contacts" class="nav-link">Контакты</a></li>
+            <li><a href="https://discord.gg" target="_blank" data-en="Discord" data-ru="Discord канал">Discord канал</a></li>
+            <li><a href="https://t.me" target="_blank" data-en="Telegram" data-ru="Telegram канал">Telegram канал</a></li>
             <li><a href="#support" data-en="Support" data-ru="Поддержка">Поддержка</a></li>
         </ul>
     </nav>
 
-<div class="theme-switch-wrapper">
-    <button id="theme-toggle-btn" class="theme-btn" title="Переключить тему">
-        <span class="theme-icon-slot">🌙</span>
-    </button>
-</div>
+    <div class="theme-switch-wrapper">
+        <button id="theme-toggle-btn" class="theme-btn" title="Переключить тему">
+            <span class="theme-icon-slot">🌙</span>
+        </button>
+    </div>
 </header>
 
 <section id="main">
@@ -110,11 +104,18 @@
 
 <section id="shop" class="reveal">
     <h2>Магазин услуг</h2>
-    <div class="grid">
+
+    <div class="shop-tabs">
+        <button class="tab-btn active" onclick="switchShopTab('vanilla', this)">🔅 Сервер Vanilla</button>
+        <button class="tab-btn disabled" disabled onclick="switchShopTab('anarchy', this)">🔥 Сервер *****</button> <!-- Анархия -->
+    </div>
+
+    <div id="shop-vanilla" class="shop-content-tab active">
+        <div class="grid">
         <div class="card donate-card">
             <div class="card-top">
                 <h3>VIP Статус</h3>
-                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Выделяйся среди игроков: уникальный префикс, цветной ник в табе.</p>
+                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Выделяйся среди игроков: уникальный префикс, суффикс и цветной ник в табе.</p>
 
                 <details class="donate-spoiler">
                     <summary>Что входит в VIP? ✨</summary>
@@ -122,6 +123,9 @@
                         <ul style="text-align: left; padding-left: 20px; margin: 0; font-size: 0.85rem; color: #fff;">
                             <li style="margin-bottom: 6px;">Свой суффикс <code>"&eVip"</code>)</li>
                             <li style="margin-bottom: 6px;">Свой префикс <code>"&e🔅&f"</code>)</li>
+                            <li style="margin-bottom: 6px;">Переименование предметов в руках (<code>/rename</code>)</li>
+                            <li style="margin-bottom: 6px;">Уникальная поза: плюхнуться на живот (<code>/bellyflop</code>)</li>
+                            <li style="margin-bottom: 6px;">Получение декоративных голов игроков (<code>/skin skull</code>)</li>
                             <li style="margin-bottom: 6px;">Включение кастомной музыки через диски</li>
                             <li style="margin-bottom: 6px;">Проверка кто взаимодействовал с блоком или сундуком (<code>/co inspect</code>)</li>
                             <li style="margin-bottom: 6px;">Поиск любых треков в голосовом чате</li>
@@ -135,7 +139,8 @@
                     </div>
                 </details>
             </div>
-            <span class="price">250₽</span>
+            <span class="price">150₽</span>
+            <a href="pay.html?item=VIP Статус&price=150&desc=Выделяйся среди игроков: уникальный префикс, суффикс и цветной ник в табе" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
             <a href="https://funpay.com/lots/offer?id=72651450" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
         </div>
 
@@ -143,7 +148,7 @@
         <div class="card donate-card">
             <div class="card-top">
                 <h3>Premium</h3>
-                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Максимальный комфорт: все фишки VIP, доступ к созданию собственных цветных тегов.</p>
+                <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Максимальный комфорт: все фишки VIP и множество другого!</p>
 
                 <details class="donate-spoiler">
                     <summary>Что входит в Premium? 🔥</summary>
@@ -152,6 +157,10 @@
                             <li style="margin-bottom: 6px;"><strong>Все возможности VIP статуса</strong></li>
                             <li style="margin-bottom: 6px;">Свой суффикс <code>"&6Premium"</code>)</li>
                             <li style="margin-bottom: 6px;">Свой префикс <code>"&6⭐&f"</code>)</li>
+                            <li style="margin-bottom: 6px;">Смена скинов прямо на сервере (<code>/skin set</code> / <code>/skin random</code>)</li>
+                            <li style="margin-bottom: 6px;">Отключение входящих запросов на ТП (<code>/tpatoggle</code>)</li>
+                            <li style="margin-bottom: 6px;">Переименование предметов в руках (<code>/rename</code>)</li>
+                            <li style="margin-bottom: 6px;">Уникальная поза: плюхнуться на живот (<code>/bellyflop</code>)</li>
                             <li style="margin-bottom: 6px;">Доступ к команде полёта (режим <code>/fly</code>)</li>
                             <li style="margin-bottom: 6px;">Переключение в режим наблюдателя (<code>/gm 3</code>)</li>
                             <li style="margin-bottom: 6px;">Модерация голосового чата (права на <code>/pv mute</code>)</li>
@@ -163,7 +172,8 @@
                     </div>
                 </details>
             </div>
-            <span class="price">500₽</span>
+            <span class="price">350₽</span>
+            <a href="pay.html?item=Premium&price=350&desc=Максимальный комфорт: все фишки VIP и множество другого!" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
             <a href="https://funpay.com/lots/offer?id=72651375" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
         </div>
 
@@ -174,6 +184,7 @@
                 <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Доступ к команде <code>/fly</code> ровно на 24 часа.</p>
             </div>
             <span class="price">25₽</span>
+            <a href="pay.html?item=Режим Полёта&price=25&desc=Доступ к команде /fly ровно на 24 часа для любых твоих построек" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
             <a href="https://funpay.com/lots/offer?id=72679394" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
         </div>
 
@@ -184,6 +195,7 @@
                 <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Вас не разбанят если были забанены по IP</p>
             </div>
             <span class="price">100₽</span>
+            <a href="pay.html?item=Разбан&price=100&desc=Снятие блокировки аккаунта. Вас не разбанят, если бан выдан по IP" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
             <a href="https://funpay.com/lots/offer?id=72651561" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
         </div>
 
@@ -194,7 +206,37 @@
                 <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Размут (Снятие блокировки чата)</p>
             </div>
             <span class="price">50₽</span>
+            <a href="pay.html?item=Размут&price=50&desc=Моментальное и автоматическое снятие блокировки текстового и голосового чата" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
             <a href="https://funpay.com/lots/offer?id=72632098" target="_blank" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+        </div>
+    </div>
+    </div>
+
+    <div id="shop-anarchy" class="shop-content-tab">
+        <div class="grid">
+            <!-- Донат Анархии №1 -->
+            <div class="card donate-card">
+                <div class="card-top">
+                    <h3>Донат-Кейс 📦</h3>
+                    <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Испытай удачу! Кейс с крутыми донат-привилегиями, мистическими предметами и сферами.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="price">39₽</span>
+                    <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Открытие скоро...</a>
+                </div>
+            </div>
+
+            <!-- Донат Анархии №2 -->
+            <div class="card donate-card">
+                <div class="card-top">
+                    <h3>Титан [Привилегия]</h3>
+                    <p class="donate-desc" style="font-size: 0.9rem; color: #aaa; margin: 10px 0;">Топовый статус на Анархии: доступ к силе титанов, кит-наборы, приват 5 регионов.</p>
+                </div>
+                <div class="card-bottom">
+                    <span class="price">790₽</span>
+                    <a href="#" target="_blank" class="btn-base buy-btn-main disabled">🛒 Открытие скоро...</a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -214,11 +256,19 @@
             <tr><td>Уникальный префикс в чате и табе</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
             <tr><td>Проверка кто взаимодействовал с блоком или сундуком</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
             <tr><td>Уникальный суффикс после ника</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
-            <tr><td>Музыка в голосовом чате (Plasmo Voice)</td><td>✅ Полный доступ</td><td>✅ Полный доступ</td></tr>
+            <tr><td>Музыка в голосовом чате (Plasma Voice)</td><td>✅ Полный доступ</td><td>✅ Полный доступ</td></tr>
             <tr><td>Виртуальный Эндер-сундук (<code>/ec</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
             <tr><td>Виртуальное точило (<code>/grindstone</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
             <tr><td>Возможность сидеть где угодно (<code>/sit</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            </tbody>
+
+            <tbody id="compare-more" class="hidden-rows">
             <tr><td>Объявления на весь сервер (<code>/broadcast</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Переименование предметов (<code>/rename</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Поза: плюхнуться на живот (<code>/bellyflop</code>)</td><td>✅ Доступен</td><td>✅ Доступен</td></tr>
+            <tr><td>Получение декоративных голов игроков (<code>/skin skull</code>)</td><td>✅ Доступен</td><td>❌ Нет</td></tr>
+            <tr><td>Смена игровых скинов прямо на сервере (<code>/skin</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
+            <tr><td>Запрет спама запросами телепортации (<code>/tpatoggle</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
             <tr><td>Режим полёта на сервере (<code>/fly</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
             <tr><td>Режим Наблюдателя (<code>/gm spectator</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
             <tr><td>Права модератора голосового чата (<code>/pv mute</code>)</td><td>❌ Нет</td><td>⭐ Доступен</td></tr>
@@ -227,6 +277,7 @@
             </tbody>
         </table>
     </div>
+    <button id="toggle-compare-btn" class="table-toggle-btn">🔽 Раскрыть полностью</button>
 </section>
 
 <section id="faq" class="reveal">
@@ -292,7 +343,7 @@
 </div>
 
 <footer>
-    <p>Author: <strong>twaiger</strong> | &copy; 2026 <strong>ApexSphere Project</strong> | <a href="rules/index.html" style="color: var(--cyan); text-decoration: none; margin-left: 10px;">📜 Правила проекта</a></p>
+    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong> | <a href="rules/index.html" style="color: var(--cyan); text-decoration: none; margin-left: 10px;">📜 Правила проекта</a></p>
 </footer>
 
 

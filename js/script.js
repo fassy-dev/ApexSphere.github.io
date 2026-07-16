@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 3. ГЕНЕРАЦИЯ ЧАСТИЦ (ДЛЯ PARTICLES-CONTAINER)
+
     const particlesContainer = document.getElementById("particles-container");
     if (particlesContainer) {
         const createParticle = () => {
@@ -143,14 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// ФУНКЦИЯ ДЛЯ АВТО-ОПРОСА ОНЛАЙНА СЕРВЕРА
+
 function updateServerOnline() {
-    // Твой реальный технический адрес и порт хостинга
     const technicalIP = 'play.kek.team:25621';
     const statusBadge = document.getElementById('vanilla-status');
     const statusText = statusBadge.querySelector('.status-count-text');
 
-    // Используем современное и стабильное API от mcstatus.io
+
     fetch(`https://api.mcstatus.io/v2/status/java/${technicalIP}`)
         .then(response => {
             if (!response.ok) throw new Error('Сеть не отвечает');
@@ -158,12 +157,12 @@ function updateServerOnline() {
         })
         .then(data => {
             if (data.online) {
-                // Если сервер работает — включаем зеленый статус и пишем онлайн
+
                 statusBadge.classList.remove('offline');
                 statusBadge.classList.add('online');
                 statusText.innerHTML = `Онлайн: ${data.players.online} / ${data.players.max}`;
             } else {
-                // Если сервер выключен
+
                 statusBadge.classList.remove('online');
                 statusBadge.classList.add('offline');
                 statusText.innerText = 'Оффлайн';
@@ -173,14 +172,14 @@ function updateServerOnline() {
             console.error('Ошибка мониторинга:', err);
             statusBadge.classList.remove('online');
             statusBadge.classList.add('offline');
-            statusText.innerText = 'Оффлайн'; // Если API упал, пишем что оффлайн
+            statusText.innerText = 'Оффлайн';
         });
 }
 
-// Запускаем мониторинг сразу при загрузке страницы
+
 document.addEventListener("DOMContentLoaded", () => {
     updateServerOnline();
-    // Обновляем данные каждые 30 секунд, чтобы не спамить запросами, но держать инфу свежей
+
     setInterval(updateServerOnline, 30000);
 });
 
@@ -193,17 +192,17 @@ faqQuestions.forEach(q => {
 });
 
 // ==========================================================================
-// ШТУЧКА: ЛОГИКА ТРЕХРЕЖИМНОГО ПЕРЕКЛЮЧАТЕЛЯ ТЕМЫ (ТЕМНАЯ / СВЕТЛАЯ / СИСТЕМНАЯ)
+// ЛОГИКА ТРЕХРЕЖИМНОГО ПЕРЕКЛЮЧАТЕЛЯ ТЕМЫ (ТЕМНАЯ / СВЕТЛАЯ / СИСТЕМНАЯ)
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const themeBtn = document.getElementById("theme-toggle-btn");
     if (!themeBtn) return;
     const themeIcon = themeBtn.querySelector(".theme-icon-slot");
 
-    // Доступные режимы: 'dark', 'light', 'system'
+
     let currentTheme = localStorage.getItem("apex-theme") || "dark";
 
-    // Функция применения темы
+
     function applyTheme(theme) {
         if (theme === "system") {
             const isSystemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -221,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Клик по кнопке — переключаем по кругу: dark -> light -> system -> dark
+
     themeBtn.addEventListener("click", () => {
         if (currentTheme === "dark") {
             currentTheme = "light";
@@ -235,14 +234,95 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTheme(currentTheme);
     });
 
-    // Слушаем изменения системных настроек устройства в реальном времени
+
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
         if (currentTheme === "system") {
             applyTheme("system");
         }
     });
 
-    // Инициализация при первой загрузке страницы
+
     applyTheme(currentTheme);
 });
 
+// ==========================================================================
+// РАСКРЫТИЕ И СВЕРТЫВАНИЕ СРАВНИТЕЛЬНОЙ ТАБЛИЦЫ
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("toggle-compare-btn");
+    const hiddenRows = document.getElementById("compare-more");
+
+    if (!toggleBtn || !hiddenRows) return;
+
+    toggleBtn.addEventListener("click", () => {
+
+        const isOpen = hiddenRows.classList.toggle("show");
+
+
+        if (isOpen) {
+            toggleBtn.innerHTML = "🔼 Свернуть список";
+        } else {
+            toggleBtn.innerHTML = "🔽 Раскрыть полностью";
+
+
+            document.getElementById("compare").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
+});
+
+// ==========================================================================
+// АВТОМАТИЧЕСКОЕ СКРЫТИЕ ШАПКИ ПРИ СКРОЛЛЕ ВНИЗ
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector("header");
+    if (!header) return;
+
+    let lastScrollTop = 0;
+    const scrollThreshold = 10;
+
+    window.addEventListener("scroll", () => {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+
+        if (currentScroll < 50) {
+            header.classList.remove("hide");
+            return;
+        }
+
+
+        if (Math.abs(currentScroll - lastScrollTop) <= scrollThreshold) return;
+
+        if (currentScroll > lastScrollTop) {
+            header.classList.add("hide");
+        } else {
+            header.classList.remove("hide");
+        }
+
+        lastScrollTop = currentScroll;
+    });
+});
+
+// ==========================================================================
+// ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК МАГАЗИНА (ВАНИЛЛА / АНАРХИЯ)
+// ==========================================================================
+window.switchShopTab = function(tabName, clickedBtn) {
+    // Находим все кнопки вкладок и убираем у них активный класс
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // Находим все блоки с товарами и прячем их
+    const tabs = document.querySelectorAll('.shop-content-tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+
+    // Включаем активный класс нажатой кнопке
+    clickedBtn.classList.add('active');
+
+    // Показываем нужный магазин
+    const activeTab = document.getElementById(`shop-${tabName}`);
+    if (activeTab) {
+        activeTab.classList.add('active');
+    }
+};
