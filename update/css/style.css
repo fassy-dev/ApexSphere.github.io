@@ -10,9 +10,8 @@
 }
 
 html { scroll-behavior: smooth; }
-body.rules-page-body,
-body.rules-page-body html {
-    scroll-behavior: auto !important;
+body.rules-page-body {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -744,4 +743,16 @@ code {
     transform: none;
     color: #555;
     border-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn-rules {
+    background: rgba(15, 28, 63, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    color: #aaa;
+    padding: 13px 31px;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

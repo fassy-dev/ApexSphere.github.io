@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Правила - ApexSphere</title>
+    <link rel="icon" type="image/png" href="../img/logo.png">
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <style>
@@ -35,101 +36,179 @@
 
         header { display: flex; justify-content: space-between; align-items: center; }
         .back-nav { color: var(--cyan); text-decoration: none; font-weight: bold; }
+
+        .rules-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .rules-content-tab {
+            display: none;
+        }
+
+        .rules-content-tab.active {
+            display: block;
+        }
+
+        /* Убираем точки */
+        .rules-container ul,
+        .rules-container li {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /* Фикс скролла */
+        html.rules-page {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body class="rules-page-body">
 <div id="particles-container"></div>
 
 <header>
-    <a href="../index.html" class="logo">ApexSphere</a>
-    <a href="../index.html" class="back-nav">← На главную</a>
+    <a href="../index.html#main" class="back-nav">← На главную</a>
+    <nav aria-label="Основная навигация">
+        <ul>
+            <li><a href="https://discord.com/QeWAYQmsEK" target="_blank" rel="noopener" data-en="Discord" data-ru="Discord канал">Discord канал</a></li>
+            <li><a href="https://t.me/ApexSphereMine" target="_blank" rel="noopener" data-en="Telegram" data-ru="Telegram канал">Telegram канал</a></li>
+            <li><a href="../index.html#support" data-en="Support" data-ru="Поддержка">Поддержка</a></li>
+        </ul>
+    </nav>
+
 </header>
+
 
 <div class="rules-container reveal active">
     <h1>⚔ Правила сервера ApexSphere</h1>
     <h1>Незнание правил не освобождает от ответственности.</h1>
 
-    <h2>💬 1. Чат и общение</h2>
-    <div class="rule-item"><strong>1.1.</strong> Лёгкие бытовые оскорбления разрешены, если они не перерастают в травлю или токсичность. Наказание: Перманентный бан</div>
-    <div class="rule-item"><strong>1.2.</strong> Чрезмерный мат и токсичное поведение запрещены.
-        Наказание: мут на 3 часа.</div>
-    <div class="rule-item"><strong>1.3.</strong> Запрещены обсуждения политики, религии, нацизма, экстремизма и провокационных тем.
-        Наказание: мут на 1 день.</div>
-    <div class="rule-item"><strong>1.4.</strong> Флуд, спам и повторяющиеся сообщения запрещены.
-        Наказание: мут на 1 час.</div>
-    <div class="rule-item"><strong>1.5.</strong> Реклама серверов, Discord-проектов, сайтов и сторонних ресурсов запрещена. Наказание: мут на 1 день / при повторе — бан на 7 дней.</div>
-    <div class="rule-item"><strong>1.6.</strong> Оскорбление родственников запрещено.
-        Наказание: бан на 3 дня / при повторе — бан на 7 дней.</div>
-    <div class="rule-item"><strong>1.7.</strong> Оскорбление администрации запрещено.
-        Наказание: бан на 1 день / при повторе — бан на 7 дней, далее — на 30 дней.</div>
-    <div class="rule-item"><strong>1.8.</strong> Угрозы, пожелания смерти и призывы к суициду запрещены.
-        Наказание: бан на 7 дней / при повторе — PERM BAN.</div>
-    <div class="rule-item"><strong>1.9.</strong> Массовый пинг участников без причины запрещён.
-        Наказание: мут на 1 час.</div>
-    <div class="rule-item"><strong>1.10.</strong> Распространение ложной информации о проекте (дезинформация о вайпах, закрытии, действиях администрации) запрещено.
-        Наказание: мут на 1 день / при повторе — бан на 3 дня.</div>
-
-    <h2>🎮 2. Игровой процесс</h2>
-    <div class="rule-item"><strong>2.1.</strong> Использование читов, FullBright, макросов, скриптов и стороннего ПО запрещено (автокликер разрешён в рамках п. 2.3).
-        Наказание: бан на 30 дней / при повторе — PERM BAN.</div>
-    <div class="rule-item"><strong>2.2.</strong> Разрешён только 1 твинк-аккаунт.
-        Наказание: IP BAN.</div>
-    <div class="rule-item"><strong>2.3.</strong> Автокликер разрешён только на АФК-фермах. Использование автокликера в PvP приравнивается к читам.</div>
-    <div class="rule-item"><strong>2.4.</strong> Дюп, экономический багоюз и намеренное создание лагов запрещены.
-        Наказание: бан на 3 дня + удаление ресурсов.</div>
-    <div class="rule-item"><strong>2.5.</strong> Гриферство, троллинг и систематическое преследование игроков запрещены.
-        Наказание: бан до 7 дней.</div>
-    <div class="rule-item"><strong>2.6.</strong> Создание лаг-машин запрещено.
-        Наказание: бан на 7 дней + удаление механизмов.</div>
-    <div class="rule-item"><strong>2.7.</strong> Обход наказаний через VPN или твинк-аккаунты запрещён.
-        Наказание: IP BAN.</div>
-    <div class="rule-item"><strong>2.8.</strong> Разрушение чужих построек запрещено.
-        Наказание: бан на 1 день + восстановление ущерба.</div>
-    <div class="rule-item"><strong>2.9.</strong> Продажа и передача аккаунтов запрещены.
-        Наказание: IP BAN.</div>
-    <div class="rule-item"><strong>2.10.</strong> Запрещены фейк-админ скины, оскорбительные никнеймы и провокационная символика.
-        Наказание: Кик ➔ Бан при игнорировании.</div>
-    <div class="rule-item"><strong>2.11.</strong> DDoS, краш сервера и иные попытки навредить проекту запрещены.
-        Наказание: PERM BAN.</div>
-    <div class="rule-item"><strong>2.12.</strong> Разрушение спавна запрещено.
-        Наказание: PERM BAN.</div>
-    <div class="rule-item"><strong>2.13.</strong> Убийства на сервере полностью разрешены, но забирать ресурсы игроков после их смерти строго запрещено.
-        Наказание: бан на 2 дня / при повторе — на усмотрение администрации.</div>
-    <div class="rule-item"><strong>2.14.</strong> Передача аккаунта другому лицу строго запрещена.
-        Наказание: перманентный бан аккаунта.</div>
-    <div class="rule-item"><strong>2.15.</strong> Покрывательство игрока, который нарушил правила или обошёл их нечестным путём, запрещено.
-        Наказание: перманентный бан по IP и никнейму.</div>
-    <div class="rule-item"><strong>2.16.</strong> Запрещено любое вредительство в радиусе спавна (заливание лавой/водой, спавн иссушителей/рейдов, блокировка проходов).
-        Наказание: PERM BAN.</div>
-
-    <h2>💰 3. Экономика</h2>
-    <div class="rule-item"><strong>3.1.</strong> Продажа игровых ценностей за реальные деньги запрещена.
-        Наказание: бан на 3 дня + конфискация.</div>
-    <div class="rule-item"><strong>3.2.</strong> Использование багов и схем для получения нечестной выгоды запрещено.
-        Наказание: от 1 дня до PERM BAN.</div>
-    <div class="rule-item"><strong>3.3.</strong> Массовая или чрезмерная бесплатная раздача ценных ресурсов (алмазы, незерит, элитры, редкие книги) запрещена, так как это вредит экономике сервера.
-        Наказание: бан на 2 дня + конфискация розданных вещей.</div>
-
-    <h2>🏡 4. Постройки и территории</h2>
-    <div class="rule-item"><strong>4.1.</strong> Запрещены постройки 18+, нацистская символика и провокационные объекты.</div>
-    <div class="rule-item"><strong>4.2.</strong> Территория владельца — 50 блоков от таблички.</div>
-    <div class="rule-item"><strong>4.3.</strong> Заброшенные постройки могут быть удалены спустя 1 месяц.</div>
-    <div class="rule-item"><strong>4.4.</strong> Использование чужих ферм разрешено только с согласия владельца.</div>
-    <div class="rule-item"><strong>4.5.</strong> Строительство вплотную к чужим территориям запрещено.</div>
-
-    <h2>📌 Дополнительно</h2>
-    <div class="rule-item">* Администрация не обязана возвращать вещи.</div>
-    <div class="rule-item">* В спорных ситуациях решение принимает главная администрация.</div>
-    <div class="rule-item">* Правила могут изменяться без предварительного предупреждения.</div>
-
-    <div class="agree-box">
-        <a href="../index.html#servers" class="btn-base agree-btn">Я согласен с правилами и принимаю их.</a>
+    <div class="rules-tabs" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchRulesTab('rules-vanilla', this)">🔅 Правила для сервера Vanilla</button>
+        <button class="tab-btn disabled" role="tab" aria-selected="false" onclick="switchRulesTab('rules-anarchy', this)">🔥 Правила для сервера Anarchy</button>
     </div>
 
-    <div style="text-align: center;"><p style="opacity: 0.4; margin-top: 40px;">Обновлено: 06.07.2026</p></div>
+    <!-- Вкладка Vanilla -->
+    <div id="rules-vanilla" class="rules-content-tab active" role="tabpanel">
+        <h2>💬 1. Чат и общение</h2>
+        <div class="rule-item"><strong>1.1.</strong> Лёгкие бытовые оскорбления разрешены, если они не перерастают в травлю или токсичность. Наказание: Перманентный бан</div>
+        <div class="rule-item"><strong>1.2.</strong> Чрезмерный мат и токсичное поведение запрещены. Наказание: мут на 3 часа.</div>
+        <div class="rule-item"><strong>1.3.</strong> Запрещены обсуждения политики, религии, нацизма, экстремизма и провокационных тем. Наказание: мут на 1 день.</div>
+        <div class="rule-item"><strong>1.4.</strong> Флуд, спам и повторяющиеся сообщения запрещены. Наказание: мут на 1 час.</div>
+        <div class="rule-item"><strong>1.5.</strong> Реклама серверов, Discord-проектов, сайтов и сторонних ресурсов запрещена. Наказание: мут на 1 день / при повторе — бан на 7 дней.</div>
+        <div class="rule-item"><strong>1.6.</strong> Оскорбление родственников запрещено. Наказание: бан на 3 дня / при повторе — бан на 7 дней.</div>
+        <div class="rule-item"><strong>1.7.</strong> Оскорбление администрации запрещено. Наказание: бан на 1 день / при повторе — бан на 7 дней, далее — на 30 дней.</div>
+        <div class="rule-item"><strong>1.8.</strong> Угрозы, пожелания смерти и призывы к суициду запрещены. Наказание: бан на 7 дней / при повторе — PERM BAN.</div>
+        <div class="rule-item"><strong>1.9.</strong> Массовый пинг участников без причины запрещён. Наказание: мут на 1 час.</div>
+        <div class="rule-item"><strong>1.10.</strong> Распространение ложной информации о проекте (дезинформация о вайпах, закрытии, действиях администрации) запрещено. Наказание: мут на 1 день / при повторе — бан на 3 дня.</div>
+
+        <h2>🎮 2. Игровой процесс</h2>
+        <div class="rule-item"><strong>2.1.</strong> Использование читов, FullBright, макросов, скриптов и стороннего ПО запрещено (автокликер разрешён в рамках п. 2.3). Наказание: бан на 30 дней / при повторе — PERM BAN.</div>
+        <div class="rule-item"><strong>2.2.</strong> Разрешён только 1 твинк-аккаунт. Наказание: IP BAN.</div>
+        <div class="rule-item"><strong>2.3.</strong> Автокликер разрешён только на АФК-фермах. Использование автокликера в PvP приравнивается к читам.</div>
+        <div class="rule-item"><strong>2.4.</strong> Дюп, экономический багоюз и намеренное создание лагов запрещены. Наказание: бан на 3 дня + удаление ресурсов.</div>
+        <div class="rule-item"><strong>2.5.</strong> Гриферство, троллинг и систематическое преследование игроков запрещены. Наказание: бан до 7 дней.</div>
+        <div class="rule-item"><strong>2.6.</strong> Создание лаг-машин запрещено. Наказание: бан на 7 дней + удаление механизмов.</div>
+        <div class="rule-item"><strong>2.7.</strong> Обход наказаний через VPN или твинк-аккаунты запрещён. Наказание: IP BAN.</div>
+        <div class="rule-item"><strong>2.8.</strong> Разрушение чужих построек запрещено. Наказание: бан на 1 день + восстановление ущерба.</div>
+        <div class="rule-item"><strong>2.9.</strong> Продажа и передача аккаунтов запрещены. Наказание: IP BAN.</div>
+        <div class="rule-item"><strong>2.10.</strong> Запрещены фейк-админ скины, оскорбительные никнеймы и провокационная символика. Наказание: Кик ➔ Бан при игнорировании.</div>
+        <div class="rule-item"><strong>2.11.</strong> DDoS, краш сервера и иные попытки навредить проекту запрещены. Наказание: PERM BAN.</div>
+        <div class="rule-item"><strong>2.12.</strong> Разрушение спавна запрещено. Наказание: PERM BAN.</div>
+        <div class="rule-item"><strong>2.13.</strong> Убийства на сервере полностью разрешены, но забирать ресурсы игроков после их смерти строго запрещено. Наказание: бан на 2 дня / при повторе — на усмотрение администрации.</div>
+        <div class="rule-item"><strong>2.14.</strong> Передача аккаунта другому лицу строго запрещена. Наказание: перманентный бан аккаунта.</div>
+        <div class="rule-item"><strong>2.15.</strong> Покрывательство игрока, который нарушил правила или обошёл их нечестным путём, запрещено. Наказание: перманентный бан по IP и никнейму.</div>
+        <div class="rule-item"><strong>2.16.</strong> Запрещено любое вредительство в радиусе спавна (заливание лавой/водой, спавн иссушителей/рейдов, блокировка проходов). Наказание: PERM BAN.</div>
+
+        <h2>💰 3. Экономика</h2>
+        <div class="rule-item"><strong>3.1.</strong> Продажа игровых ценностей за реальные деньги запрещена. Наказание: бан на 3 дня + конфискация.</div>
+        <div class="rule-item"><strong>3.2.</strong> Использование багов и схем для получения нечестной выгоды запрещено. Наказание: от 1 дня до PERM BAN.</div>
+        <div class="rule-item"><strong>3.3.</strong> Массовая или чрезмерная бесплатная раздача ценных ресурсов (алмазы, незерит, элитры, редкие книги) запрещена, так как это вредит экономике сервера. Наказание: бан на 2 дня + конфискация розданных вещей.</div>
+
+        <h2>🏡 4. Постройки и территории</h2>
+        <div class="rule-item"><strong>4.1.</strong> Запрещены постройки 18+, нацистская символика и провокационные объекты.</div>
+        <div class="rule-item"><strong>4.2.</strong> Территория владельца — 50 блоков от таблички.</div>
+        <div class="rule-item"><strong>4.3.</strong> Заброшенные постройки могут быть удалены спустя 1 месяц.</div>
+        <div class="rule-item"><strong>4.4.</strong> Использование чужих ферм разрешено только с согласия владельца.</div>
+        <div class="rule-item"><strong>4.5.</strong> Строительство вплотную к чужим территориям запрещено.</div>
+
+        <h2>📌 Дополнительно</h2>
+        <div class="rule-item">* Администрация не обязана возвращать вещи.</div>
+        <div class="rule-item">* В спорных ситуациях решение принимает главная администрация.</div>
+        <div class="rule-item">* Правила могут изменяться без предварительного предупреждения.</div>
+
+        <div class="agree-box">
+            <a href="../index.html#servers" class="btn-base agree-btn">Я согласен с правилами и принимаю их.</a>
+        </div>
+
+        <div style="text-align: center;"><p style="opacity: 0.4; margin-top: 40px;">Обновлено: 06.07.2026</p></div>
+    </div>
+
+    <!-- Вкладка Anarchy -->
+    <div id="rules-anarchy" class="rules-content-tab" role="tabpanel">
+        <h2>test</h2>
+        <div class="rule-item">test</div>
+
+        <div class="agree-box">
+            <a href="../index.html#servers" class="btn-base agree-btn">Я согласен с правилами и принимаю их.</a>
+        </div>
+
+        <div style="text-align: center;"><p style="opacity: 0.4; margin-top: 40px;">Обновлено: 06.07.2026</p></div>
+    </div>
 </div>
 
+<script>
+    function switchRulesTab(tabId, btn) {
+        document.querySelectorAll('.rules-content-tab').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+        });
 
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+    }
+
+    // Фикс скролла для страницы правил
+    if (document.querySelector('.rules-page-body')) {
+        history.scrollRestoration = 'manual';
+
+        window.addEventListener('beforeunload', function() {
+            sessionStorage.setItem('scrollPos', window.scrollY);
+        });
+
+        window.addEventListener('load', function() {
+            const scrollPos = sessionStorage.getItem('scrollPos');
+            if (scrollPos) {
+                setTimeout(function() {
+                    window.scrollTo(0, parseInt(scrollPos));
+                }, 100);
+            }
+        });
+    }
+
+    function createParticles() {
+    const container = document.getElementById('particles-container');
+    if (!container) return;
+    const colors = ['#64ffda', '#ffffff', '#38e038', '#ffcc00'];
+    for (let i = 0; i < 60; i++) {
+        let p = document.createElement('div');
+        p.className = 'particle';
+        let s = Math.random() * 4 + 2 + 'px';
+        p.style.width = s; p.style.height = s;
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = Math.random() * 12 + 8 + 's';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        container.appendChild(p);
+    }
+}
+createParticles();
+</script>
 <script src="../js/script.js"></script>
 </body>
 </html>

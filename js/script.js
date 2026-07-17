@@ -794,12 +794,12 @@ class SiteTour {
     checkFirstVisit() {
         const tourCompleted = localStorage.getItem('apex-tour-completed');
 
-        if (!tourCompleted) {
+        //if (!tourCompleted) {
             // Показываем предложение через 3 секунды
-            setTimeout(() => {
-                this.showWelcomeMessage();
-            }, 3000);
-        }
+            //setTimeout(() => {
+                //this.showWelcomeMessage();
+            //}, 3000);
+        //}
     }
 
     showWelcomeMessage() {
