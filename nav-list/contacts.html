@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — ApexSphere</title>
+    <link rel="icon" type="image/png" href="../img/logo.png">
+    <meta name="description" content="Связь с администрацией ApexSphere. Discord, Telegram и другие способы связи.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* Дополнительные стили для страницы контактов */
+        .contacts-page {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .contacts-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contacts-header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            color: var(--cyan);
+            text-shadow: 0 0 30px rgba(0, 255, 224, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .contacts-header p {
+            color: #b0c0d8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contacts-grid-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .contact-card-main {
+            background: rgba(20, 35, 70, 0.85);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card-main::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 224, 0.03), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card-main:hover::before {
+            opacity: 1;
+        }
+
+        .contact-card-main:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan);
+            box-shadow: 0 15px 40px rgba(0, 255, 224, 0.2);
+        }
+
+        .contact-card-main .contact-icon-big {
+            font-size: 4rem;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card-main:hover .contact-icon-big {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .contact-card-main h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: #fff;
+        }
+
+        .contact-card-main p {
+            color: #b0c0d8;
+            font-size: 0.95rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .contact-card-main .contact-btn {
+            margin-top: 10px;
+            padding: 10px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 224, 0.1);
+            border: 2px solid rgba(0, 255, 224, 0.3);
+            color: var(--cyan);
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .contact-card-main:hover .contact-btn {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 255, 224, 0.4);
+        }
+
+        /* Цветовые варианты */
+        .contact-card-main.discord-card {
+            border-color: rgba(88, 101, 242, 0.3);
+        }
+        .contact-card-main.discord-card:hover {
+            border-color: var(--discord);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.3);
+        }
+        .contact-card-main.discord-card .contact-btn {
+            border-color: rgba(88, 101, 242, 0.3);
+            color: var(--discord);
+        }
+        .contact-card-main.discord-card:hover .contact-btn {
+            background: var(--discord);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.4);
+        }
+
+        .contact-card-main.telegram-card {
+            border-color: rgba(46, 166, 255, 0.3);
+        }
+        .contact-card-main.telegram-card:hover {
+            border-color: var(--telegram);
+            box-shadow: 0 15px 40px rgba(46, 166, 255, 0.3);
+        }
+        .contact-card-main.telegram-card .contact-btn {
+            border-color: rgba(46, 166, 255, 0.3);
+            color: var(--telegram);
+        }
+        .contact-card-main.telegram-card:hover .contact-btn {
+            background: var(--telegram);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(46, 166, 255, 0.4);
+        }
+
+        .contact-card-main.email-card {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+        .contact-card-main.email-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+        .contact-card-main.email-card .contact-btn {
+            border-color: rgba(255, 215, 0, 0.3);
+            color: var(--gold);
+        }
+        .contact-card-main.email-card:hover .contact-btn {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .contacts-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            margin: 50px auto;
+            border-radius: 2px;
+        }
+
+        .contacts-info-block {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(20, 35, 70, 0.5);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .contacts-info-block p {
+            color: #b0c0d8;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .contacts-info-block strong {
+            color: var(--cyan);
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin: 30px auto 0;
+            padding: 12px 30px;
+            background: rgba(0, 255, 224, 0.08);
+            border: 2px solid var(--cyan);
+            border-radius: 15px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 224, 0.4);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .contacts-header h1 {
+                font-size: 1.8rem;
+            }
+            .contacts-grid-main {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+            .contacts-info-block {
+                padding: 20px;
+                margin: 0 15px;
+            }
+            .contact-card-main {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+<header>
+    <a href="../index.html#main" class="logo" aria-label="ApexSphere - на главную">ApexSphere</a>
+    <nav aria-label="Основная навигация">
+        <ul>
+            <li><a href="../index.html">Главная</a></li>
+            <li><a href="../rules/index.html">Правила</a></li>
+            <li><a href="https://discord.com/QeWAYQmsEK" target="_blank" rel="noopener">Discord</a></li>
+            <li><a href="https://t.me/ApexSphereMine" target="_blank" rel="noopener">Telegram</a></li>
+            <li><a href="../index.html#support">Поддержка</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Основной контент -->
+<div class="contacts-page">
+    <section class="contacts-header">
+        <h1>📞 Контакты</h1>
+        <p>Свяжитесь с нами любым удобным способом</p>
+    </section>
+
+    <div class="contacts-grid-main">
+        <!-- Discord -->
+        <a href="https://discord.com/QeWAYQmsEK" target="_blank" rel="noopener" class="contact-card-main discord-card">
+            <div class="contact-icon-big">💬</div>
+            <h3>Discord</h3>
+            <p>Присоединяйтесь к нашему Discord-серверу.<br>Быстрая поддержка, голосовые каналы и общение с игроками.</p>
+            <span class="contact-btn">Перейти →</span>
+        </a>
+
+        <!-- Telegram Канал -->
+        <a href="https://t.me/ApexSphereMine" target="_blank" rel="noopener" class="contact-card-main telegram-card">
+            <div class="contact-icon-big">📢</div>
+            <h3>Telegram Канал</h3>
+            <p>Новости проекта, анонсы обновлений<br>и важные объявления.</p>
+            <span class="contact-btn">Перейти →</span>
+        </a>
+
+        <!-- Telegram Чат -->
+        <a href="https://t.me/ApexSphereChat" target="_blank" rel="noopener" class="contact-card-main telegram-card">
+            <div class="contact-icon-big">💬</div>
+            <h3>Telegram Чат</h3>
+            <p>Общение с игроками и администрацией.<br>Оперативная помощь и поддержка.</p>
+            <span class="contact-btn">Перейти →</span>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:support@apexsphere.ru" class="contact-card-main email-card">
+            <div class="contact-icon-big">📧</div>
+            <h3>Email</h3>
+            <p>Для деловых предложений и важных вопросов.<br>Отвечаем в течение 24 часов.</p>
+            <span class="contact-btn">Написать →</span>
+        </a>
+    </div>
+
+    <div class="contacts-divider"></div>
+
+    <div class="contacts-info-block">
+        <p>
+            <strong>🕒 Время ответа:</strong> В Discord и Telegram отвечаем в течение 5-15 минут.<br>
+            <strong>📧 Email:</strong> отвечаем в течение 24 часов.<br>
+            <strong>🌐 Сайт:</strong> <a href="../index.html" style="color: var(--cyan); text-decoration: none;">apexsphere.ru</a>
+        </p>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="../index.html" class="back-to-home">🏠 Вернуться на главную</a>
+    </div>
+</div>
+
+<!-- Футер с навигацией и платежными системами -->
+<footer class="footer-plate">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo" style="font-size: 1.3rem;">ApexSphere</span>
+                <p class="footer-subtitle">Игровой проект</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 ApexSphere — Все права защищены.</p>
+                <p class="footer-small">ApexSphere не связан с MojangAB, все средства идут на развитие проекта.</p>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <h4 class="footer-nav-title">Навигация</h4>
+            <ul class="footer-nav-list">
+                <li><a href="privacy.html">Политика конфиденциальности</a></li>
+                <li><a href="../rules/index.html">📜 Правила проекта</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-payments">
+            <h4 class="footer-nav-title">Мы принимаем:</h4>
+            <div class="payment-icons">
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <circle cx="20" cy="14" r="8" fill="#55ff55" opacity="0.8"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">СБП</text>
+                    </svg>
+                    <span>Система быстрых платежей (РФ)</span>
+                </div>
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold">🛒</text>
+                    </svg>
+                    <span>FunPay (РФ/СНГ)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<footer>
+    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong> | <a href="../rules/index.html">📜 Правила проекта</a></p>
+</footer>
+
+<script src="../js/script.js" defer></script>
+</body>
+</html>

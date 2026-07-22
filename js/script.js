@@ -1,5 +1,27 @@
+if (window.location.hostname !== 'ApexSphere.github.io' && window.location.hostname !== 'apexpshere.ru') {
+    document.body.innerHTML = '<h1>Доступ запрещен</h1>';
+    throw new Error('Несанкционированный доступ');
+}
+
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
+}
+
+function isRealBrowser() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return false;
+
+    if (screen.width < 100 || screen.height < 100) return false;
+
+    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
+        if (!window.matchMedia('(pointer: fine)').matches) return false;
+    }
+    return true;
+}
+
+const startTime = performance.now();
+const timeSpent = performance.now() - startTime;
+if (timeSpent < 1) {
+    alert("Подозрительная активность");
 }
 
 function createParticles() {

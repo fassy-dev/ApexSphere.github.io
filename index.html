@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApexSphere — Пространство игровых возможностей</title>
     <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="backround" type="image/jpg" href="img/background.jpg">
     <meta name="description" content="Официальный сайт Minecraft проекта ApexSphere. Уникальные игровые режимы, отзывчивое комьюнити и комфортная игра. Заходи, копируй IP и играй с нами!">
     <meta property="og:title" content="ApexSphere — Пространство игровых возможностей">
     <meta property="og:description" content="Официальный сайт Minecraft-проекта ApexSphere. Заходи, копируй IP и играй вместе с нами!">
@@ -12,7 +13,7 @@
     <meta property="og:image" content="https://apexsphere.ru/img/og-image.png">
     <meta property="og:url" content="https://apexsphere.ru">
 
-    <!-- Предзагрузка шрифтов -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,16 +21,16 @@
 </head>
 
 <body>
-<!-- Динамический фон с частицами -->
+
 <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-<!-- Toast-уведомление -->
+
 <div id="toast-notification" class="toast" role="status" aria-live="polite">
     <span class="toast-icon">👍</span>
     <span class="toast-msg">IP скопирован в буфер обмена!</span>
 </div>
 
-<!-- Шапка -->
+
 <header>
     <a href="#main" class="logo" aria-label="ApexSphere - на главную">ApexSphere</a>
     <nav aria-label="Основная навигация">
@@ -59,7 +60,7 @@
 <!--    </div>-->
 </header>
 
-<!-- Главный экран -->
+
 <section id="main">
     <div class="hero-content reveal active">
         <h1>ApexSphere</h1>
@@ -72,7 +73,7 @@
     </div>
 </section>
 
-<!-- Серверы -->
+
 <section id="servers" class="reveal">
     <h2>Наш сервер</h2>
     <div class="grid">
@@ -106,7 +107,7 @@
     </div>
 </section>
 
-<!-- Как начать -->
+
 <section id="how-to" class="reveal">
     <h2>Как начать играть</h2>
     <div class="how-to-steps">
@@ -128,7 +129,7 @@
     </div>
 </section>
 
-<!-- Магазин -->
+
 <section id="shop" class="reveal">
     <h2>Магазин услуг</h2>
 
@@ -380,9 +381,54 @@
     <span id="status-text"><strong>ApexSphere:</strong> Сервер открыт и ждет только тебя!</span>
 </div>
 
+<!-- Плашка с навигацией и платежными системами -->
+<footer class="footer-plate">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo" style="font-size: 1.3rem;">ApexSphere</span>
+                <p class="footer-subtitle">Игровой проект</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 ApexSphere — Все права защищены.</p>
+                <p class="footer-small">ApexSphere не связан с MojangAB, все средства идут на развитие проекта.</p>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <h4 class="footer-nav-title">Навигация</h4>
+            <ul class="footer-nav-list">
+                <li><a href="/nav-list/privacy.html">Политика конфиденциальности</a></li>
+                <li><a href="/rules/index.html">📜 Правила проекта</a></li>
+                <li><a href="/nav-list/contacts.html">Контакты</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-payments">
+            <h4 class="footer-nav-title">Мы принимаем:</h4>
+            <div class="payment-icons">
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <circle cx="20" cy="14" r="8" fill="#55ff55" opacity="0.8"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">СБП</text>
+                    </svg>
+                    <span>Система быстрых платежей (РФ)</span>
+                </div>
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold">🛒</text>
+                    </svg>
+                    <span>FunPay (РФ/СНГ)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <footer>
-    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong> | <a href="rules/index.html">📜 Правила проекта</a></p>
+    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong></p>
 </footer>
 
 <!-- Инициализация -->
