@@ -1,7 +1,14 @@
-if (window.location.hostname !== 'ApexSphere.github.io' && window.location.hostname !== 'apexpshere.ru') {
-    document.body.innerHTML = '<h1>Доступ запрещен</h1>';
-    throw new Error('Несанкционированный доступ');
-}
+//const allowedDomains = [
+//    'apexsphere.ru',
+//    'www.apexsphere.ru',
+//    'ApexSphere.github.io',
+//    'apexsphere.github.io'
+//];
+//
+//if (!allowedDomains.includes(window.location.hostname.toLowerCase())) {
+//    document.body.innerHTML = '<h2>Доступ запрещен</h2>';
+//    throw new Error('Несанкционированный доступ');
+//}
 
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
