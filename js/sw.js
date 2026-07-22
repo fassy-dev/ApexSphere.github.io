@@ -1,4 +1,3 @@
-// sw.js - Service Worker
 const CACHE_NAME = 'apexsphere';
 const urlsToCache = [
     '/',

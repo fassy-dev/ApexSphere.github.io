@@ -1,34 +1,105 @@
-const allowedDomains = [
+// ============================================
+// 1. НАСТРОЙКИ
+// ============================================
+const ALLOWED_DOMAINS = [
     'apexsphere.ru',
     'www.apexsphere.ru',
+    'apexsphere.github.io',
     'ApexSphere.github.io',
-    'apexsphere.github.io'
+    'localhost'  // Для локальной разработки
 ];
 
-if (!allowedDomains.includes(window.location.hostname.toLowerCase())) {
-    document.body.innerHTML = '<h2>Доступ запрещен</h2>';
-    throw new Error('Несанкционированный доступ');
-}
+const ALLOWED_PORTS = [
+    '80',    // HTTP
+    '443',   // HTTPS
+    '63342'  // Порт WebStorm/PhpStorm для локальной разработки
+];
 
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
+// ============================================
+// 2. ОСНОВНАЯ ПРОВЕРКА ДОСТУПА
+// ============================================
+function checkAccess() {
+    const host = window.location.hostname.toLowerCase();
+    const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
+    const protocol = window.location.protocol;
 
-function isRealBrowser() {
-    if (typeof window === 'undefined' || typeof document === 'undefined') return false;
 
-    if (screen.width < 100 || screen.height < 100) return false;
-
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-        if (!window.matchMedia('(pointer: fine)').matches) return false;
+    if (!ALLOWED_DOMAINS.includes(host)) {
+        document.body.innerHTML = `
+            <h2>🔒 Доступ запрещен</h2>
+            <p>Сайт доступен только по адресу: <strong>apexsphere.ru</strong></p>
+            <p>Пожалуйста, перейдите по правильному адресу.</p>
+        `;
+        throw new Error('Несанкционированный доступ: неверный домен');
     }
+
+    if (host === 'localhost' && !ALLOWED_PORTS.includes(port)) {
+        document.body.innerHTML = `
+            <h2>🔒 Доступ запрещен</h2>
+            <p>Локальный доступ разрешен только на портах: ${ALLOWED_PORTS.join(', ')}</p>
+        `;
+        throw new Error('Несанкционированный доступ: неверный порт');
+    }
+
+    if (host !== 'localhost' && protocol !== 'https:') {
+        window.location.href = 'https://' + host + window.location.pathname + window.location.search;
+        return false;
+    }
+
+    if (host.match(/^\d+\.\d+\.\d+\.\d+$/)) {
+        document.body.innerHTML = `
+            <h2>🔒 Доступ запрещен</h2>
+            <p>Доступ к сайту по IP-адресу запрещен.</p>
+            <p>Используйте доменное имя: <strong>apexsphere.ru</strong></p>
+        `;
+        throw new Error('Несанкционированный доступ: доступ по IP запрещен');
+    }
+
+    const isBot = detectBot();
+    if (isBot) {
+        document.body.innerHTML = `
+            <h2>🤖 Доступ запрещен</h2>
+            <p>Обнаружена подозрительная активность.</p>
+            <p>Пожалуйста, отключите VPN/прокси и обновите страницу.</p>
+        `;
+        throw new Error('Несанкционированный доступ: бот или подозрительное поведение');
+    }
+
     return true;
 }
 
-const startTime = performance.now();
-const timeSpent = performance.now() - startTime;
-if (timeSpent < 3) {
-    alert("Подозрительная активность");
+// ============================================
+// 3. ДЕТЕКТОР БОТОВ
+// ============================================
+function detectBot() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return true;
+
+    if (screen.width < 200 || screen.height < 200) return true;
+
+    if (navigator.webdriver === true) return true;
+
+    const ua = navigator.userAgent.toLowerCase();
+    const botPatterns = ['bot', 'crawl', 'spider', 'headless', 'phantom', 'puppeteer'];
+    for (const pattern of botPatterns) {
+        if (ua.includes(pattern)) return true;
+    }
+
+    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
+        if (!window.matchMedia('(pointer: fine)').matches) return true;
+    }
+
+    return false;
+}
+
+if (!checkAccess()) {
+    console.log('Перенаправление на HTTPS...');
+} else {
+    console.log('✅ Доступ разрешен');
+}
+
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
 }
 
 function createParticles() {
