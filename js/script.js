@@ -27,7 +27,7 @@ function isRealBrowser() {
 
 const startTime = performance.now();
 const timeSpent = performance.now() - startTime;
-if (timeSpent < 1) {
+if (timeSpent < 3) {
     alert("Подозрительная активность");
 }
 
