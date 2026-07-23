@@ -1295,3 +1295,54 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(updateServerStatus, 500);
     setInterval(updateServerStatus, 30000);
 });
+
+// ============================================
+// УВЕДОМЛЕНИЕ О КУКАХ
+// ============================================
+
+function showCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    const cookiesAccepted = localStorage.getItem('cookies-accepted');
+
+    if (!cookiesAccepted && banner) {
+        // Показываем с задержкой
+        setTimeout(() => {
+            banner.classList.add('show');
+        }, 1500);
+    }
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookies-accepted', 'true');
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.classList.remove('show');
+        setTimeout(() => {
+            banner.style.display = 'none';
+        }, 600);
+    }
+}
+
+function declineCookies() {
+    // Очищаем все сохраненные данные
+    localStorage.removeItem('apex-theme');
+    localStorage.removeItem('apex-tour-completed');
+    localStorage.removeItem('scrollPos');
+    localStorage.setItem('cookies-declined', 'true');
+
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.classList.remove('show');
+        setTimeout(() => {
+            banner.style.display = 'none';
+        }, 600);
+    }
+
+    // Сбрасываем тему на дефолтную
+    document.documentElement.setAttribute('data-theme', 'dark');
+}
+
+// Показываем баннер при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    showCookieBanner();
+});
