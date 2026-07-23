@@ -23,6 +23,9 @@ body {
     color: var(--text-white);
     overflow-x: hidden;
     min-height: 100vh;
+    user-select: none;
+    -webkit-user-select: none;
+    display: block;
 }
 
 #particles-canvas {
@@ -1394,3 +1397,422 @@ code {
         grid-template-columns: 1fr;
     }
 }
+
+.login-form .submit-btn {
+    background: #ff0000;
+    cursor: pointer;
+}
+
+.login-form:not(.authentic) .submit-btn {
+    display: none;
+}
+
+.privacy-page {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .privacy-header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: var(--cyan);
+            text-shadow: 0 0 30px rgba(0, 255, 224, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .privacy-header p {
+            color: #b0c0d8;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .privacy-block {
+            background: rgba(20, 35, 70, 0.85);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 35px 40px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .privacy-block:hover {
+            border-color: rgba(0, 255, 224, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 224, 0.05);
+        }
+
+        .privacy-block h2 {
+            color: var(--cyan);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .privacy-block p {
+            color: #c8d6e5;
+            line-height: 1.8;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .privacy-block ul {
+            color: #c8d6e5;
+            padding-left: 25px;
+            line-height: 1.8;
+        }
+
+        .privacy-block ul li {
+            margin-bottom: 8px;
+        }
+
+        .privacy-block strong {
+            color: var(--gold);
+        }
+
+        .privacy-update {
+            text-align: right;
+            color: #667799;
+            font-size: 0.85rem;
+            margin-top: 30px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin: 20px auto 0;
+            padding: 12px 30px;
+            background: rgba(0, 255, 224, 0.08);
+            border: 2px solid var(--cyan);
+            border-radius: 15px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 224, 0.4);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .privacy-header h1 {
+                font-size: 1.5rem;
+            }
+            .privacy-block {
+                padding: 25px 20px;
+            }
+            .privacy-block h2 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Дополнительные стили для страницы контактов */
+        .contacts-page {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .contacts-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contacts-header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2.5rem;
+            color: var(--cyan);
+            text-shadow: 0 0 30px rgba(0, 255, 224, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .contacts-header p {
+            color: #b0c0d8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contacts-grid-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .contact-card-main {
+            background: rgba(20, 35, 70, 0.85);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card-main::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 224, 0.03), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card-main:hover::before {
+            opacity: 1;
+        }
+
+        .contact-card-main:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan);
+            box-shadow: 0 15px 40px rgba(0, 255, 224, 0.2);
+        }
+
+        .contact-card-main .contact-icon-big {
+            font-size: 4rem;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card-main:hover .contact-icon-big {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .contact-card-main h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: #fff;
+        }
+
+        .contact-card-main p {
+            color: #b0c0d8;
+            font-size: 0.95rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .contact-card-main .contact-btn {
+            margin-top: 10px;
+            padding: 10px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 224, 0.1);
+            border: 2px solid rgba(0, 255, 224, 0.3);
+            color: var(--cyan);
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .contact-card-main:hover .contact-btn {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 255, 224, 0.4);
+        }
+
+        /* Цветовые варианты */
+        .contact-card-main.discord-card {
+            border-color: rgba(88, 101, 242, 0.3);
+        }
+        .contact-card-main.discord-card:hover {
+            border-color: var(--discord);
+            box-shadow: 0 15px 40px rgba(88, 101, 242, 0.3);
+        }
+        .contact-card-main.discord-card .contact-btn {
+            border-color: rgba(88, 101, 242, 0.3);
+            color: var(--discord);
+        }
+        .contact-card-main.discord-card:hover .contact-btn {
+            background: var(--discord);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(88, 101, 242, 0.4);
+        }
+
+        .contact-card-main.telegram-card {
+            border-color: rgba(46, 166, 255, 0.3);
+        }
+        .contact-card-main.telegram-card:hover {
+            border-color: var(--telegram);
+            box-shadow: 0 15px 40px rgba(46, 166, 255, 0.3);
+        }
+        .contact-card-main.telegram-card .contact-btn {
+            border-color: rgba(46, 166, 255, 0.3);
+            color: var(--telegram);
+        }
+        .contact-card-main.telegram-card:hover .contact-btn {
+            background: var(--telegram);
+            color: #fff;
+            box-shadow: 0 0 25px rgba(46, 166, 255, 0.4);
+        }
+
+        .contact-card-main.email-card {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+        .contact-card-main.email-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+        .contact-card-main.email-card .contact-btn {
+            border-color: rgba(255, 215, 0, 0.3);
+            color: var(--gold);
+        }
+        .contact-card-main.email-card:hover .contact-btn {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+        }
+
+        .contacts-divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            margin: 50px auto;
+            border-radius: 2px;
+        }
+
+        .contacts-info-block {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(20, 35, 70, 0.5);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .contacts-info-block p {
+            color: #b0c0d8;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .contacts-info-block strong {
+            color: var(--cyan);
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin: 30px auto 0;
+            padding: 12px 30px;
+            background: rgba(0, 255, 224, 0.08);
+            border: 2px solid var(--cyan);
+            border-radius: 15px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 224, 0.4);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .contacts-header h1 {
+                font-size: 1.8rem;
+            }
+            .contacts-grid-main {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+            .contacts-info-block {
+                padding: 20px;
+                margin: 0 15px;
+            }
+            .contact-card-main {
+                padding: 30px 20px;
+            }
+        }
+
+        .rules-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 40px;
+            background: rgba(15, 28, 63, 0.9);
+            border-radius: 30px;
+            border: 1px solid var(--cyan);
+            backdrop-filter: blur(15px);
+            line-height: 1.6;
+            z-index: 2;
+            position: relative;
+        }
+        h1 { font-family: 'Press Start 2P', cursive; color: var(--cyan); text-align: center; font-size: 1.4rem; margin-bottom: 40px; }
+        h2 { color: var(--gold); border-bottom: 1px solid rgba(255,204,0,0.3); padding-bottom: 10px; margin-top: 30px; font-size: 1.2rem; }
+        .rule-item { margin-bottom: 15px; padding-left: 15px; border-left: 2px solid var(--cyan); font-size: 0.95rem; }
+
+        .agree-box { text-align: center; margin-top: 50px; }
+        .agree-btn {
+            background: var(--minecraft-green);
+            color: black;
+            padding: 20px 40px;
+            font-size: 1.1rem;
+            box-shadow: 0 0 20px rgba(56,224,56,0.4);
+            text-transform: uppercase;
+        }
+
+        header { display: flex; justify-content: space-between; align-items: center; }
+        .back-nav { color: var(--cyan); text-decoration: none; font-weight: bold; }
+
+        .rules-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .rules-content-tab {
+            display: none;
+        }
+
+        .rules-content-tab.active {
+            display: block;
+        }
+
+        /* Убираем точки */
+        .rules-container ul,
+        .rules-container li {
+            list-style: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        /* Фикс скролла */
+        html.rules-page {
+            scroll-behavior: smooth;
+        }

@@ -1199,3 +1199,99 @@ function startTour() {
 
 // Добавляем в консоль подсказку
 console.log('💡 Подсказка: нажмите кнопку 🎯 в правом нижнем углу для тура по сайту');
+
+// ==========================================
+// СТАТУС MINECRAFT СЕРВЕРА
+// ==========================================
+
+async function updateServerStatus() {
+    // Находим элементы
+    const statusElement = document.getElementById('server-status');
+    const playersElement = document.getElementById('server-players');
+    const ipElement = document.getElementById('server-ip');
+    const versionElement = document.getElementById('server-version');
+    const badgeElement = document.getElementById('vanilla-status');
+
+    // Если нет статуса — выходим
+    if (!statusElement) {
+        console.warn('Элементы статуса не найдены');
+        return;
+    }
+
+    // Показываем загрузку
+    statusElement.textContent = '⏳ Загрузка...';
+    if (playersElement) playersElement.textContent = '--';
+
+    try {
+        // Запрос к API (используем play.apexsphere.ru)
+        const response = await fetch('https://api.mcstatus.io/v2/status/java/play.apexsphere.ru:25565');
+
+        if (!response.ok) {
+            throw new Error(`HTTP ошибка: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Статус сервера:', data);
+
+        // ==========================================
+        // ОБНОВЛЯЕМ СТАТУС
+        // ==========================================
+
+        if (data.online === true) {
+            // 🟢 Сервер онлайн
+            statusElement.textContent = '🟢 Онлайн';
+            statusElement.style.color = '#4caf50';
+
+            // Обновляем бейдж
+            if (badgeElement) {
+                badgeElement.className = 'online-status-badge online';
+            }
+
+            // Игроки
+            if (playersElement && data.players) {
+                const online = data.players.online || 0;
+                const max = data.players.max || 0;
+                playersElement.textContent = `${online}/${max}`;
+                playersElement.style.color = online > 0 ? '#4caf50' : '#ff9800';
+            }
+
+            // IP (если изменился)
+            if (ipElement && data.host) {
+                ipElement.textContent = `${data.host}`;
+            }
+
+            // Версия
+            if (versionElement && data.version) {
+                versionElement.textContent = data.version.name_clean || data.version.name_raw || 'Неизвестно';
+            }
+
+        } else {
+            // 🔴 Сервер оффлайн
+            statusElement.textContent = '🔴 Оффлайн';
+            statusElement.style.color = '#f44336';
+
+            if (badgeElement) {
+                badgeElement.className = 'online-status-badge offline';
+            }
+
+            if (playersElement) playersElement.textContent = '0/0';
+            if (versionElement) versionElement.textContent = '—';
+        }
+
+    } catch (error) {
+        console.error('❌ Ошибка проверки статуса:', error);
+
+        // Показываем ошибку
+        if (statusElement) {
+            statusElement.textContent = '❌ Ошибка';
+            statusElement.style.color = '#ff9800';
+        }
+        if (playersElement) playersElement.textContent = '--';
+    }
+}
+
+// Запускаем при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(updateServerStatus, 500);
+    setInterval(updateServerStatus, 30000);
+});

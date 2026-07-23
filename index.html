@@ -2,8 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;
+               connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us;
+               script-src 'self' 'unsafe-inline' https://www.google-analytics.com;
+               img-src 'self' data: https:;">
+
     <title>ApexSphere — Пространство игровых возможностей</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="backround" type="image/jpg" href="img/background.jpg">
@@ -13,7 +20,6 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://apexsphere.ru/img/og-image.png">
     <meta property="og:url" content="https://apexsphere.ru">
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,27 +82,35 @@
 
 
 <section id="servers" class="reveal">
-    <h2>Наш сервер</h2>
+    <h2>Наши сервера</h2>
     <div class="grid">
+
         <div class="card server-card">
             <h3>Vanilla 26.1.2</h3>
+
+            <!-- СТАТУС -->
             <div class="online-status-badge offline" id="vanilla-status">
                 <span class="status-indicator-dot"></span>
-                <span class="status-count-text">Загрузка...</span>
+                <span class="status-count-text" id="server-status">⏳ Загрузка...</span>
             </div>
             <p class="donate-desc">Классическое выживание и честное комьюнити. Исследуй дикий бескрайний мир, строй города и создавай свою историю без ограничений.</p>
+
+            <!-- АДРЕС -->
             <p>Адрес сервера:</p>
             <div class="ip-copy-wrapper" data-ip="play.apexsphere.ru" role="button" tabindex="0" aria-label="Скопировать IP сервера">
-                <span class="ip-clickable">play.apexsphere.ru</span>
+                <span class="ip-clickable" id="server-ip">play.apexsphere.ru</span>
                 <span class="copy-tooltip">Нажми, чтобы скопировать</span>
             </div>
+
+            <!-- ВЕРСИЯ (скрытая, но нужна для JS) -->
+            <span id="server-version" style="display: none;">Загрузка...</span>
         </div>
 
         <div class="card">
             <h3>Anarchy 1.16.5+ (Сервер недоступен)</h3>
-            <div class="online-status-badge offline" id="card">
+            <div class="online-status-badge offline" id="anarchy-status">
                 <span class="status-indicator-dot"></span>
-                <span class="status-count-text">Недоступен</span>
+                <span class="status-count-text" id="server-status">⏳ Загрузка...</span>
             </div>
             <p class="donate-desc">Анархия, твори что хочешь, развивайся, строй базы, всё в твоих руках! (Сервер недоступен).</p>
             <p>Адрес сервера:</p>
@@ -120,10 +134,15 @@
         <div class="step-card clickable-step" data-ip="play.apexsphere.ru" role="button" tabindex="0" aria-label="Скопировать IP сервера">
             <div class="step-num" aria-hidden="true">2</div>
             <h3>Скопируй адрес</h3>
-            <p>Просто кликни по этой карточке, чтобы скопировать IP сервера Vanilla: <span class="highlight-ip">play.apexsphere.ru</span> Anarchy: <span class="highlight-ip">anarchy.apexsphere.ru</span></p>
+            <p>Просто кликни по этой карточке, чтобы скопировать IP сервера Vanilla: <span class="highlight-ip">play.apexsphere.ru</span></p>
+        </div>
+        <div class="step-card clickable-step" data-ip="anarchy.apexsphere.ru" role="button" tabindex="0" aria-label="Скопировать IP сервера">
+            <div class="step-num" aria-hidden="true">3</div>
+            <h3>Скопируй адрес</h3>
+            <p>Просто кликни по этой карточке, чтобы скопировать IP сервера Anarchy: <span class="highlight-ip">anarchy.apexsphere.ru</span></p>
         </div>
         <div class="step-card">
-            <div class="step-num" aria-hidden="true">3</div>
+            <div class="step-num" aria-hidden="true">4</div>
             <h3>Заходи и играй!</h3>
             <p>Создавай приватный город, твори, развивайся, строй базы, всё в твоих руках!</p>
         </div>
@@ -399,9 +418,9 @@
         <div class="footer-nav">
             <h4 class="footer-nav-title">Навигация</h4>
             <ul class="footer-nav-list">
-                <li><a href="/nav-list/privacy.html">Политика конфиденциальности</a></li>
-                <li><a href="/rules/index.html">📜 Правила проекта</a></li>
-                <li><a href="/nav-list/contacts.html">Контакты</a></li>
+                <li><a href="nav-list/privacy.html" data-en="privacy" data-ru="Политика">Политика конфиденциальности</a></li>
+                <li><a href="rules/index.html" data-en="Rules" data-ru="Правила">Правила проекта</a></li>
+                <li><a href="nav-list/contacts.html" data-en="contacts" data-ru="Контакты">Контакты</a></li>
             </ul>
         </div>
 
