@@ -574,6 +574,7 @@ footer {
     transform: translateY(0);
 }
 
+/* Контакты */
 .contacts-section {
     padding: 80px 20px;
     text-align: center;
@@ -593,7 +594,6 @@ footer {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--cyan);
-    font-family: 'Ubuntu', sans-serif;
     font-weight: 700;
 }
 
@@ -604,13 +604,13 @@ footer {
 }
 
 .social-row {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     width: 100%;
-    flex-wrap: wrap;
 }
 
+/* Карточки */
 .contact-card {
     background: rgba(20, 35, 70, 0.8);
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -618,34 +618,15 @@ footer {
     padding: 35px 25px;
     text-decoration: none;
     color: #ffffff;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
-    min-width: 280px;
-    max-width: 340px;
+    justify-content: center;
     backdrop-filter: blur(5px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-}
-
-.contact-icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
-}
-
-.contact-card h3 {
-    font-size: 1.4rem;
-    margin: 10px 0;
-    font-weight: 700;
-    color: #fff;
-}
-
-.contact-card p {
-    font-size: 0.95rem;
-    color: #b0c0d8;
-    margin: 0;
+    min-height: 200px;
+    text-align: center;
 }
 
 .contact-card:hover {
@@ -653,21 +634,97 @@ footer {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
 }
 
-.contact-card:hover .contact-icon {
-    transform: scale(1.15);
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
 }
 
+.contact-card h3 {
+    font-size: 1.3rem;
+    margin: 10px 0;
+    font-weight: 700;
+    color: #fff;
+}
+
+.contact-card p {
+    font-size: 0.9rem;
+    color: #b0c0d8;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Telegram */
 .contact-card.telegram:hover {
-    border-color: var(--telegram);
+    border-color: #2ea6ff;
     box-shadow: 0 0 30px rgba(46, 166, 255, 0.4);
 }
+
 .contact-card.telegram-chat:hover {
     border-color: #3db8ff;
     box-shadow: 0 0 30px rgba(61, 184, 255, 0.4);
 }
-.contact-card.discord:hover {
-    border-color: var(--discord);
-    box-shadow: 0 0 30px rgba(88, 101, 242, 0.4);
+
+/* Discord карточка */
+.contact-card.discord-card {
+    background: linear-gradient(145deg, #1a2444, #111b33);
+    border: 2px solid rgba(88, 101, 242, 0.5) !important;
+    box-shadow: 0 0 25px rgba(88, 101, 242, 0.15);
+}
+
+.contact-card.discord-card:hover {
+    border-color: rgba(88, 101, 242, 0.8) !important;
+    box-shadow: 0 0 40px rgba(88, 101, 242, 0.4) !important;
+}
+
+.discord-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #5865F2, #4752c4);
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+}
+
+.contact-card.discord-card h3 {
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.contact-card.discord-card p {
+    color: #b8c4e0;
+    margin-bottom: 20px;
+}
+
+.discord-join {
+    display: inline-block;
+    padding: 10px 25px;
+    background: rgba(88, 101, 242, 0.2);
+    border: 1px solid rgba(88, 101, 242, 0.4);
+    border-radius: 12px;
+    color: #5865F2;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.contact-card.discord-card:hover .discord-join {
+    background: rgba(88, 101, 242, 0.4);
+    border-color: #5865F2;
+    color: #fff;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .social-row {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .contacts-title {
+        font-size: 2rem;
+    }
 }
 
 .donate-spoiler {
@@ -1959,5 +2016,641 @@ code {
 
     .cookie-icon {
         font-size: 2rem;
+    }
+}
+
+/* ============================================
+   DISCORD WIDGET — КРАСИВОЕ ПРЕВЬЮ
+   ============================================ */
+
+#discord-widget {
+    padding: 80px 20px;
+}
+
+.discord-widget-container {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.discord-widget-card {
+    background: linear-gradient(145deg, #1a2444, #111b33);
+    border: 2px solid rgba(88, 101, 242, 0.3);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(88, 101, 242, 0.15);
+    transition: all 0.3s ease;
+}
+
+.discord-widget-card:hover {
+    border-color: rgba(88, 101, 242, 0.6);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(88, 101, 242, 0.25);
+    transform: translateY(-5px);
+}
+
+.discord-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 25px;
+    background: rgba(88, 101, 242, 0.1);
+    border-bottom: 1px solid rgba(88, 101, 242, 0.2);
+}
+
+.discord-server-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #5865F2, #4752c4);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+    flex-shrink: 0;
+}
+
+.discord-server-info h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 0 5px 0;
+    font-weight: 700;
+}
+
+.discord-online {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #57f287;
+    font-weight: 500;
+}
+
+.discord-dot {
+    width: 8px;
+    height: 8px;
+    background: #57f287;
+    border-radius: 50%;
+    animation: discordPulse 2s infinite;
+    box-shadow: 0 0 8px #57f287;
+}
+
+@keyframes discordPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+/* Превью Discord */
+.discord-preview {
+    position: relative;
+    overflow: hidden;
+}
+
+.discord-preview-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #404eed, #5865F2, #404eed);
+    opacity: 0.08;
+}
+
+.discord-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(88, 101, 242, 0.3) 0%, transparent 60%);
+    animation: glowRotate 8s linear infinite;
+}
+
+@keyframes glowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.discord-preview-content {
+    position: relative;
+    padding: 30px 25px;
+    text-align: center;
+    z-index: 1;
+}
+
+.discord-server-avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #5865F2, #4752c4);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 15px;
+    box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.discord-preview-content h4 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.discord-preview-content p {
+    color: #b0c0d8;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.discord-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.discord-feature {
+    background: rgba(88, 101, 242, 0.1);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #c0c8e0;
+    transition: all 0.3s;
+}
+
+.discord-feature:hover {
+    background: rgba(88, 101, 242, 0.2);
+    border-color: rgba(88, 101, 242, 0.4);
+}
+
+.feature-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.discord-members-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.member-avatars {
+    display: flex;
+    gap: -5px;
+}
+
+.member-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #1a2444;
+    background: rgba(88, 101, 242, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    margin-left: -8px;
+}
+
+.member-avatar:first-child {
+    margin-left: 0;
+}
+
+#discord-total-members {
+    color: #b0c0d8;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.discord-join {
+    padding: 20px 25px;
+    text-align: center;
+    background: rgba(88, 101, 242, 0.05);
+    border-top: 1px solid rgba(88, 101, 242, 0.2);
+}
+
+.discord-join-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #5865F2, #4752c4) !important;
+    color: #fff !important;
+    padding: 15px 30px !important;
+    font-size: 1rem !important;
+    box-shadow: 0 5px 20px rgba(88, 101, 242, 0.4) !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.discord-join-btn:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 30px rgba(88, 101, 242, 0.6) !important;
+    animation: none !important;
+}
+
+.discord-icon {
+    font-size: 1.3rem;
+}
+
+.discord-invite-text {
+    margin-top: 12px;
+    color: #8899bb;
+    font-size: 0.85rem;
+}
+
+#discord-members-count {
+    color: #57f287;
+    font-weight: 600;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .discord-widget-card {
+        border-radius: 20px;
+    }
+
+    .discord-preview-content {
+        padding: 25px 15px;
+    }
+
+    .discord-header {
+        padding: 15px 20px;
+    }
+
+    .discord-join {
+        padding: 15px 20px;
+    }
+
+    .discord-server-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+        border-radius: 12px;
+    }
+
+    .discord-server-info h3 {
+        font-size: 1rem;
+    }
+
+    .discord-features {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .discord-server-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+        border-radius: 20px;
+    }
+}
+
+/* Кнопка присоединиться */
+.discord-join,
+.tg-join,
+.tg-chat-join {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: all 0.3s;
+}
+
+/* Discord кнопка */
+.discord-join {
+    background: rgba(88, 101, 242, 0.2);
+    border: 1px solid rgba(88, 101, 242, 0.4);
+    color: #5865F2;
+}
+
+.discord-card:hover .discord-join {
+    background: rgba(88, 101, 242, 0.4);
+    color: #fff;
+}
+
+/* Telegram кнопка */
+.tg-join {
+    background: rgba(46, 166, 255, 0.2);
+    border: 1px solid rgba(46, 166, 255, 0.4);
+    color: #2ea6ff;
+}
+
+.telegram:hover .tg-join {
+    background: rgba(46, 166, 255, 0.4);
+    color: #fff;
+}
+
+/* Telegram чат кнопка */
+.tg-chat-join {
+    background: rgba(61, 184, 255, 0.2);
+    border: 1px solid rgba(61, 184, 255, 0.4);
+    color: #3db8ff;
+}
+
+.telegram-chat:hover .tg-chat-join {
+    background: rgba(61, 184, 255, 0.4);
+    color: #fff;
+}
+
+/* ============================================
+   РЕФЕРАЛЬНАЯ СИСТЕМА
+   ============================================ */
+
+#referral {
+    padding: 80px 20px;
+}
+
+.referral-box {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.referral-cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.referral-card {
+    background: rgba(20, 35, 70, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 35px 30px;
+    text-align: center;
+    flex: 1;
+    min-width: 220px;
+    max-width: 280px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.referral-card:hover {
+    transform: translateY(-5px);
+}
+
+.referral-card.friend {
+    border-color: var(--gold);
+    box-shadow: 0 10px 35px rgba(255, 215, 0, 0.2);
+}
+
+.referral-card.friend:hover {
+    box-shadow: 0 15px 45px rgba(255, 215, 0, 0.35);
+    border-color: #fff;
+}
+
+.referral-header {
+    margin-bottom: 20px;
+}
+
+.referral-emoji {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+    animation: bounce 2s infinite;
+}
+
+.referral-card.friend .referral-emoji {
+    animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.referral-header h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 0;
+    font-weight: 700;
+}
+
+.referral-reward {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.reward-label {
+    color: #8899bb;
+    font-size: 0.85rem;
+    order: 2;
+}
+
+.reward-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cyan);
+    order: 1;
+}
+
+.reward-value.highlight {
+    color: var(--gold);
+    font-size: 1.7rem;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.referral-arrow {
+    font-size: 2.5rem;
+    color: var(--cyan);
+    font-weight: bold;
+    animation: arrowPulse 1.5s infinite;
+}
+
+@keyframes arrowPulse {
+    0%, 100% { opacity: 1; transform: translateX(0); }
+    50% { opacity: 0.5; transform: translateX(10px); }
+}
+
+/* Как это работает */
+.referral-howto {
+    background: rgba(20, 35, 70, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.referral-howto h3 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.referral-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ref-step {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: rgba(10, 20, 45, 0.6);
+    border-radius: 15px;
+    padding: 20px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+}
+
+.ref-step:hover {
+    border-color: rgba(0, 255, 224, 0.2);
+    background: rgba(15, 28, 60, 0.8);
+}
+
+.ref-num {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--cyan), #00b894);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(0, 255, 224, 0.4);
+}
+
+.ref-step p {
+    color: #c0c8e0;
+    margin: 0;
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.ref-step code {
+    background: rgba(0, 255, 224, 0.1);
+    color: var(--cyan);
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 255, 224, 0.2);
+    white-space: nowrap;
+    font-family: monospace;
+}
+
+/* Правила */
+.referral-rules {
+    background: rgba(255, 75, 75, 0.05);
+    border: 1px solid rgba(255, 75, 75, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.referral-rules h4 {
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.referral-rules ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.referral-rules li {
+    color: #b0c0d8;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.referral-rules li::before {
+    content: '•';
+    color: #ff6b6b;
+    position: absolute;
+    left: 5px;
+    font-weight: bold;
+}
+
+.referral-rules li code {
+    background: rgba(0, 255, 224, 0.1);
+    color: var(--cyan);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    #referral {
+        padding: 60px 15px;
+    }
+
+    .referral-cards {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .referral-card {
+        max-width: 100%;
+        padding: 25px 20px;
+    }
+
+    .referral-arrow {
+        transform: rotate(90deg);
+        font-size: 2rem;
+    }
+
+    @keyframes arrowPulse {
+        0%, 100% { opacity: 1; transform: rotate(90deg) translateX(0); }
+        50% { opacity: 0.5; transform: rotate(90deg) translateX(10px); }
+    }
+
+    .ref-step {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 15px 20px;
+    }
+
+    .ref-step code {
+        width: 100%;
+        text-align: center;
+    }
+
+    .referral-howto {
+        padding: 20px 15px;
+    }
+
+    .referral-emoji {
+        font-size: 2.5rem;
+    }
+
+    .reward-value {
+        font-size: 1.3rem;
+    }
+
+    .reward-value.highlight {
+        font-size: 1.4rem;
     }
 }

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реферальная система - ApexSphere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        :root {
+            --dark-blue: #060f25;
+            --accent-blue: #1a2a55;
+            --minecraft-green: #55ff55;
+            --text-white: #eef5ff;
+            --gold: #ffd700;
+            --discord: #5865F2;
+            --telegram: #2ea6ff;
+            --cyan: #00ffe0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Ubuntu', sans-serif;
+            background: linear-gradient(135deg, #030b1f 0%, #0a1835 50%, #060f25 100%);
+            color: #eef5ff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Шапка */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(6, 15, 37, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid var(--cyan);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+            box-shadow: 0 5px 30px rgba(0, 255, 224, 0.1);
+        }
+
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.1rem;
+            color: var(--cyan);
+            text-decoration: none;
+            text-shadow: 0 0 20px rgba(0, 255, 224, 0.5);
+        }
+
+        .logo:hover {
+            color: #fff;
+            text-shadow: 0 0 30px var(--cyan), 0 0 60px var(--cyan);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #c8d6e5;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--cyan);
+            text-shadow: 0 0 15px rgba(0, 255, 224, 0.5);
+        }
+
+        /* Контент */
+        .referral-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 140px 40px 60px;
+        }
+
+        .referral-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .referral-hero h1 {
+            font-size: 2.2rem;
+            color: var(--cyan);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .referral-hero p {
+            color: #b0c0d8;
+            font-size: 1.1rem;
+        }
+
+        /* Карточки */
+        .referral-cards {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .ref-card {
+            background: rgba(20, 35, 70, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 35px 30px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .ref-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .ref-card.friend {
+            border-color: var(--gold);
+            box-shadow: 0 10px 35px rgba(255, 215, 0, 0.2);
+        }
+
+        .ref-card.friend:hover {
+            box-shadow: 0 15px 45px rgba(255, 215, 0, 0.35);
+        }
+
+        .ref-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .ref-card h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 0 0 20px 0;
+        }
+
+        .ref-reward {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .ref-card.friend .ref-reward {
+            color: var(--gold);
+            font-size: 1.7rem;
+        }
+
+        .ref-label {
+            display: block;
+            color: #8899bb;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .ref-arrow {
+            font-size: 2.5rem;
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        /* Как работает */
+        .ref-howto {
+            background: rgba(20, 35, 70, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .ref-howto h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+        }
+
+        .ref-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(10, 20, 45, 0.6);
+            border-radius: 15px;
+            padding: 20px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 15px;
+        }
+
+        .ref-num {
+            width: 40px;
+            height: 40px;
+            background: var(--cyan);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0, 255, 224, 0.3);
+        }
+
+        .ref-step p {
+            color: #c0c8e0;
+            margin: 0;
+            flex: 1;
+        }
+
+        .ref-step code {
+            background: rgba(0, 255, 224, 0.1);
+            color: var(--cyan);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 255, 224, 0.2);
+            font-family: monospace;
+        }
+
+        /* Правила */
+        .ref-rules {
+            background: rgba(255, 75, 75, 0.05);
+            border: 1px solid rgba(255, 75, 75, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .ref-rules h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .ref-rules ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ref-rules li {
+            color: #b0c0d8;
+            font-size: 0.9rem;
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .ref-rules li::before {
+            content: "-";
+            color: #ff6b6b;
+            position: absolute;
+            left: 5px;
+            font-weight: bold;
+        }
+
+        .ref-rules code {
+            background: rgba(0, 255, 224, 0.1);
+            color: var(--cyan);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 40px;
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            .referral-page {
+                padding: 120px 20px 40px;
+            }
+
+            .referral-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .referral-cards {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .ref-card {
+                max-width: 100%;
+            }
+
+            .ref-arrow {
+                transform: rotate(90deg);
+            }
+
+            .ref-step {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 15px;
+            }
+
+            .ref-step code {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="../index.html" class="logo" aria-label="ApexSphere - на главную">ApexSphere</a>
+    <nav aria-label="Основная навигация">
+        <ul>
+            <li><a href="../rules/index.html" data-en="Rules" data-ru="Правила">Правила</a></li>
+            <li><a href="https://discord.com/QeWAYQmsEK" target="_blank" rel="noopener" data-en="Discord" data-ru="Discord канал">Discord канал</a></li>
+            <li><a href="https://t.me/ApexSphereMine" target="_blank" rel="noopener" data-en="Telegram" data-ru="Telegram канал">Telegram канал</a></li>
+            <li><a href="../index.html#support" data-en="Support" data-ru="Поддержка">Поддержка</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="referral-page">
+    <div class="referral-hero">
+        <h1>Приведи друга — получи VIP!</h1>
+        <p>Играй с друзьями и получай бонусы прямо на сервере!</p>
+    </div>
+
+    <div class="referral-cards">
+        <div class="ref-card">
+            <span class="ref-emoji">Ты</span>
+            <h3>Приглашающий</h3>
+            <div class="ref-reward">VIP на 1 день</div>
+            <span class="ref-label">за каждого друга</span>
+        </div>
+
+        <div class="ref-arrow">&rarr;</div>
+
+        <div class="ref-card friend">
+            <span class="ref-emoji">Друг</span>
+            <h3>Новый игрок</h3>
+            <div class="ref-reward">VIP на 3 дня</div>
+            <span class="ref-label">после 1 часа игры</span>
+        </div>
+    </div>
+
+    <div class="ref-howto">
+        <h2>Как это работает?</h2>
+
+        <div class="ref-step">
+            <span class="ref-num">1</span>
+            <p>Зайди на сервер и напиши команду</p>
+            <code>/referral</code>
+        </div>
+
+        <div class="ref-step">
+            <span class="ref-num">2</span>
+            <p>Скопируй свою реферальную ссылку и отправь другу</p>
+        </div>
+
+        <div class="ref-step">
+            <span class="ref-num">3</span>
+            <p>Друг заходит и играет 1 час &mdash; вы оба получаете VIP!</p>
+        </div>
+    </div>
+
+    <div class="ref-rules">
+        <h3>Правила акции:</h3>
+        <ul>
+            <li>Команда для получения ссылки: <code>/referral</code></li>
+            <li>Друг должен зайти с нового аккаунта (не твинка)</li>
+            <li><strong>Друг должен отыграть минимум 1 час на сервере</strong></li>
+            <li>VIP выдается автоматически после выполнения условий</li>
+            <li>Можно привести сколько угодно друзей</li>
+            <li>За накрутку &mdash; бан обоих аккаунтов</li>
+        </ul>
+    </div>
+
+    <a href="../index.html" class="back-link">&larr; На главную</a>
+</div>
+
+<footer class="footer-plate">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo" style="font-size: 1.3rem;">ApexSphere</span>
+                <p class="footer-subtitle">Игровой проект</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 ApexSphere — Все права защищены.</p>
+                <p class="footer-small">ApexSphere не связан с MojangAB, все средства идут на развитие проекта.</p>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <h4 class="footer-nav-title">Навигация</h4>
+            <ul class="footer-nav-list">
+                <li><a href="../nav-list/privacy.html" data-en="privacy" data-ru="Политика">Политика конфиденциальности</a></li>
+                <li><a href="../rules/index.html" data-en="Rules" data-ru="Правила">Правила проекта</a></li>
+                <li><a href="../nav-list/contacts.html" data-en="contacts" data-ru="Контакты">Контакты</a></li>
+                <li><a href="../nav-list/referral.html" data-en="Referral" data-ru="Рефералка">Реферальная система</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-payments">
+            <h4 class="footer-nav-title">Мы принимаем:</h4>
+            <div class="payment-icons">
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <circle cx="20" cy="14" r="8" fill="#55ff55" opacity="0.8"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">СБП</text>
+                    </svg>
+                    <span>Система быстрых платежей (РФ)</span>
+                </div>
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold">🛒</text>
+                    </svg>
+                    <span>FunPay (РФ/СНГ)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<footer>
+    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong> <li><a href="../update/index(old).html" data-ru="Эксперимент">Экспериментальный сайт (старый)</a></li></p>
+</footer>
+
+</body>
+</html>

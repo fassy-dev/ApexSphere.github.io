@@ -1346,3 +1346,37 @@ function declineCookies() {
 document.addEventListener('DOMContentLoaded', function() {
     showCookieBanner();
 });
+
+// ============================================
+// DISCORD WIDGET — ПОЛУЧЕНИЕ ОНЛАЙНА
+// ============================================
+
+function fetchDiscordMembers() {
+    const serverId = '1482463774991450314';
+
+    fetch(`https://discord.com/api/v9/invites/QeWAYQmsEK?with_counts=true`)
+        .then(response => response.json())
+        .then(data => {
+            const memberCount = document.getElementById('discord-member-count');
+            if (memberCount && data.approximate_member_count) {
+                const count = data.approximate_member_count;
+                const online = data.approximate_presence_count || 0;
+                memberCount.textContent = `${count} участников • ${online} онлайн`;
+            }
+        })
+        .catch(() => {
+            // Фолбэк если API недоступен
+            const memberCount = document.getElementById('discord-member-count');
+            if (memberCount) {
+                memberCount.textContent = 'Присоединяйся к нам!';
+            }
+        });
+}
+
+// Вызываем при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    fetchDiscordMembers();
+
+    // Обновляем каждые 5 минут
+    setInterval(fetchDiscordMembers, 300000);
+});
