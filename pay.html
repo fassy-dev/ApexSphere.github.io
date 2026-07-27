@@ -2,21 +2,13 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self';
-               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-               font-src 'self' https://fonts.gstatic.com;
-               connect-src 'self' https://api.mcstatus.io;
-               script-src 'self' 'unsafe-inline' https://www.google-analytics.com;
-               img-src 'self' data: https:;">
     <title>ApexSphere — Оформление заказа</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=15">
+    <link rel="stylesheet" href="css/style.css?v=1">
     <style>
         .pay-section {
             min-height: 100vh;
@@ -160,57 +152,8 @@
     </div>
 </section>
 
-<footer class="footer-plate">
-    <div class="footer-container">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <span class="logo" style="font-size: 1.3rem;">ApexSphere</span>
-                <p class="footer-subtitle">Игровой проект</p>
-            </div>
-            <div class="footer-copyright">
-                <p>© 2026 ApexSphere — Все права защищены.</p>
-                <p class="footer-small">ApexSphere не связан с MojangAB, все средства идут на развитие проекта.</p>
-            </div>
-        </div>
 
-        <div class="footer-nav">
-            <h4 class="footer-nav-title">Навигация</h4>
-            <ul class="footer-nav-list">
-                <li><a href="nav-list/privacy.html" data-en="privacy" data-ru="Политика">Политика конфиденциальности</a></li>
-                <li><a href="rules/index.html" data-en="Rules" data-ru="Правила">Правила проекта</a></li>
-                <li><a href="nav-list/contacts.html" data-en="contacts" data-ru="Контакты">Контакты</a></li>
-                <li><a href="nav-list/referral.html" data-en="Referral" data-ru="Рефералка">Реферальная система</a></li>
-            </ul>
-        </div>
 
-        <div class="footer-payments">
-            <h4 class="footer-nav-title">Мы принимаем:</h4>
-            <div class="payment-icons">
-                <div class="payment-item">
-                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
-                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
-                        <circle cx="20" cy="14" r="8" fill="#55ff55" opacity="0.8"/>
-                        <text x="20" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">СБП</text>
-                    </svg>
-                    <span>Система быстрых платежей (РФ)</span>
-                </div>
-                <div class="payment-item">
-                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
-                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
-                        <text x="20" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold">🛒</text>
-                    </svg>
-                    <span>FunPay (РФ/СНГ)</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<footer>
-    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong> <li><a href="update/index(old).html" data-ru="Эксперимент">Экспериментальный сайт (старый)</a></li></p>
-</footer>
-
-<!-- Скрипт считывания параметров из URL и обработки платежа -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Получаем параметры из ссылки
@@ -239,6 +182,56 @@
 </script>
 
 <!-- Подключаем твой JS для фоновых искр -->
+<footer class="footer-plate">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo" style="font-size: 1.3rem;">ApexSphere</span>
+                <p class="footer-subtitle">Игровой проект</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 ApexSphere — Все права защищены.</p>
+                <p class="footer-small">ApexSphere не связан с MojangAB, все средства идут на развитие проекта.</p>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <h4 class="footer-nav-title">Навигация</h4>
+            <ul class="footer-nav-list">
+                <li><a href="/nav-list/privacy.html" data-en="privacy" data-ru="Политика">Политика конфиденциальности</a></li>
+                <li><a href="/rules/index.html" data-en="Rules" data-ru="Правила">Правила проекта</a></li>
+                <li><a href="/nav-list/contacts.html" data-en="contacts" data-ru="Контакты">Контакты</a></li>
+                <li><a href="/nav-list/referral.html" data-en="Referral" data-ru="Рефералка">Реферальная система</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-payments">
+            <h4 class="footer-nav-title">Мы принимаем:</h4>
+            <div class="payment-icons">
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <circle cx="20" cy="14" r="8" fill="#55ff55" opacity="0.8"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">СБП</text>
+                    </svg>
+                    <span>Система быстрых платежей (РФ)</span>
+                </div>
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold">🛒</text>
+                    </svg>
+                    <span>FunPay (РФ/СНГ)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<footer>
+    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong> </p>
+</footer>
+
 <script src="js/script.js?v=15"></script>
 </body>
 </html>
