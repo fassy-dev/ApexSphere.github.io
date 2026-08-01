@@ -1380,3 +1380,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Обновляем каждые 5 минут
     setInterval(fetchDiscordMembers, 300000);
 });
+
+(function() {
+    var panel = document.getElementById('notificationPanel');
+    var toggle = document.getElementById('notificationToggle');
+    var close = document.getElementById('notificationClose');
+
+    if (!panel || !toggle) return;
+
+    toggle.onclick = function() {
+        panel.classList.add('active');
+    };
+
+    close.onclick = function() {
+        panel.classList.remove('active');
+    };
+
+    document.addEventListener('click', function(e) {
+        if (panel.classList.contains('active') && !panel.contains(e.target) && e.target !== toggle) {
+            panel.classList.remove('active');
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && panel.classList.contains('active')) {
+            panel.classList.remove('active');
+        }
+    });
+})();

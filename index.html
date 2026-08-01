@@ -24,6 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 
@@ -43,9 +44,10 @@
     <nav aria-label="Основная навигация">
         <ul>
             <li><a href="rules/index.html" data-en="Rules" data-ru="Правила">Правила</a></li>
-            <li><a href="https://discord.com/QeWAYQmsEK" target="_blank" rel="noopener" data-en="Discord" data-ru="Discord канал">Discord канал</a></li>
+            <li><a href="https://discord.gg/6tgcvpuRXX" target="_blank" rel="noopener" data-en="Discord" data-ru="Discord канал">Discord канал</a></li>
             <li><a href="https://t.me/ApexSphereMine" target="_blank" rel="noopener" data-en="Telegram" data-ru="Telegram канал">Telegram канал</a></li>
             <li><a href="#support" data-en="Support" data-ru="Поддержка">Поддержка</a></li>
+            <li><a href="media/media.html" data-en="media" data-ru="Медиа">Медиа</a></li>
             <li><a href="nav-list/referral.html" data-en="Referral" data-ru="Рефералка">Реферальная система</a></li>
         </ul>
     </nav>
@@ -592,6 +594,47 @@
     </div>
 </div>
 
+<div class="notification-panel" id="notificationPanel">
+    <div class="notification-header">
+        <h3>Уведомления</h3>
+        <button class="notification-close" onclick="document.getElementById('notificationPanel').classList.remove('active')">✕</button>
+    </div>
+    <div class="notification-body">
+        <div class="notification-item">
+            <div class="notification-icon">🎬</div>
+            <div class="notification-content">
+                <h4>Ищем медиа-партнёров!</h4>
+                <p>Снимай контент и получай привилегии на сервере. Роль Media, стартовые бонусы и поддержка ждут тебя.</p>
+                <a href="media/media.html" class="notification-link">Подробнее →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="notification-toggle" id="notificationToggle" onclick="document.getElementById('notificationPanel').classList.add('active')">
+    🔔
+</button>
+
 <script src="js/script.js" defer></script>
+<script>
+    (function() {
+        var panel = document.getElementById('notificationPanel');
+        if (!panel) return;
+
+        document.addEventListener('click', function(e) {
+            if (panel.classList.contains('active') &&
+                !panel.contains(e.target) &&
+                e.target.id !== 'notificationToggle') {
+                panel.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && panel.classList.contains('active')) {
+                panel.classList.remove('active');
+            }
+        });
+    })();
+</script>
 </body>
 </html>

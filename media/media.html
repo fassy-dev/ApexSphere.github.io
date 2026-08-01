@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self';
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               font-src 'self' https://fonts.gstatic.com;
+               connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us;
+               script-src 'self' 'unsafe-inline' https://www.google-analytics.com;
+               img-src 'self' data: https:;">
+
+    <title>Медиа — ApexSphere</title>
+    <meta property="og:type" content="website">
+    <title>ApexSphere — Пространство игровых возможностей</title>
+    <link rel="icon" type="image/png" href="../img/logo.png">
+    <link rel="backround" type="image/jpg" href="../img/background.jpg">
+    <meta property="og:description" content="Официальный сайт Minecraft-проекта ApexSphere. Заходи, копируй IP и играй вместе с нами!">
+    <meta name="description" content="Официальный сайт Minecraft проекта ApexSphere. Уникальные игровые режимы, отзывчивое комьюнити и комфортная игра. Заходи, копируй IP и играй с нами!">
+    <meta property="og:image" content="https://apexsphere.ru/img/og-image.png">
+    <meta property="og:url" content="https://apexsphere.ru">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .media-hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+        .media-hero h1 {
+            font-size: 2.4rem;
+            margin-bottom: 12px;
+        }
+        .media-hero .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        .criteria-grid {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            gap: 24px !important;
+            justify-content: center !important;
+            align-items: stretch !important;
+            max-width: 1000px !important;
+            margin: 0 auto 60px !important;
+            padding: 0 20px !important;
+        }
+        .criteria-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 32px 24px;
+            flex: 1 1 250px !important;
+            max-width: 300px !important;
+            min-width: 200px !important;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+            display: block !important;
+            width: auto !important;
+        }
+        .criteria-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .criteria-card .icon {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .criteria-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        .criteria-card p {
+            font-size: 0.95rem;
+            opacity: 0.75;
+            line-height: 1.5;
+        }
+        .benefits {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .benefits h2 {
+            margin-bottom: 32px;
+        }
+        .benefits-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .benefit-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 28px 20px;
+            flex: 1 1 200px;
+            max-width: 260px;
+        }
+        .benefit-item .icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .benefit-item h4 {
+            margin-bottom: 6px;
+        }
+        .benefit-item p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .template-box {
+            max-width: 650px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .template-box h2 {
+            margin-bottom: 10px;
+        }
+        .template-box .sub {
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        .code-block {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: left;
+            font-family: monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            user-select: all;
+            white-space: pre-wrap;
+        }
+
+        /* ----- ФИКС КНОПОК ----- */
+        .template-box .btn-group {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
+            gap: 14px !important;
+            justify-content: center !important;
+            align-items: center !important;
+            margin-top: 20px !important;
+            width: auto !important;
+        }
+        .template-box .btn-group a {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            padding: 14px 32px !important;
+            border-radius: 10px !important;
+            font-weight: 600 !important;
+            font-size: 1rem !important;
+            text-decoration: none !important;
+            transition: all 0.2s !important;
+            cursor: pointer !important;
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+            width: auto !important;
+            max-width: none !important;
+            margin: 0 !important;
+        }
+        .template-box .btn-group a:first-child {
+            background: #5865F2 !important;
+            color: #fff !important;
+            border: none !important;
+        }
+        .template-box .btn-group a:first-child:hover {
+            background: #4752c4 !important;
+            transform: translateY(-2px) !important;
+            color: #fff !important;
+            text-decoration: none !important;
+        }
+        .template-box .btn-group a:last-child {
+            background: transparent !important;
+            border: 1px solid rgba(255,255,255,0.25) !important;
+            color: #fff !important;
+        }
+        .template-box .btn-group a:last-child:hover {
+            border-color: rgba(255,255,255,0.5) !important;
+            color: #fff !important;
+            text-decoration: none !important;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px 20px 80px;
+        }
+        .cta-section h2 {
+            margin-bottom: 10px;
+        }
+        .cta-section p {
+            opacity: 0.75;
+            margin-bottom: 24px;
+        }
+        .cta-section a {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            padding: 14px 32px !important;
+            border-radius: 10px !important;
+            font-weight: 600 !important;
+            font-size: 1rem !important;
+            text-decoration: none !important;
+            transition: all 0.2s !important;
+            background: #5865F2 !important;
+            color: #fff !important;
+            border: none !important;
+            white-space: nowrap !important;
+            width: auto !important;
+            max-width: none !important;
+        }
+        .cta-section a:hover {
+            background: #4752c4 !important;
+            transform: translateY(-2px) !important;
+            color: #fff !important;
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <a href="../index.html" class="logo">ApexSphere</a>
+        <nav>
+            <a href="../index.html">Главная</a>
+            <a href="media.html" class="active">Медиа</a>
+        </nav>
+    </div>
+</header>
+<section class="media-hero">
+    <h1>Медиа партнёрство</h1>
+    <p class="subtitle">
+        Снимай контент по ApexSphere, получай привилегии и стань частью нашей медиа-команды
+    </p>
+</section>
+<section class="criteria-grid">
+    <div class="criteria-card">
+        <span class="icon"><i class="fab fa-youtube"></i></span>
+        <h3>YouTube</h3>
+        <p>От 50 подписчиков<br>или ролики с 50+ просмотрами</p>
+    </div>
+    <div class="criteria-card">
+        <span class="icon"><i class="fab fa-tiktok"></i></span>
+        <h3>TikTok / Shorts</h3>
+        <p>От 300 просмотров<br>на роликах про наш проект</p>
+    </div>
+    <div class="criteria-card">
+        <span class="icon"><i class="fas fa-broadcast-tower"></i></span>
+        <h3>Стримы</h3>
+        <p>Любая платформа<br>онлайн не важен, важно желание</p>
+    </div>
+</section>
+<section class="benefits">
+    <h2>Что ты получишь</h2>
+    <div class="benefits-grid">
+        <div class="benefit-item">
+            <span class="icon"><i class="fas fa-star"></i></span>
+            <h4>Роль Media</h4>
+            <p>В игре и в Discord — выделяйся среди игроков</p>
+        </div>
+        <div class="benefit-item">
+            <span class="icon"><i class="fas fa-gift"></i></span>
+            <h4>Стартовые бонусы</h4>
+            <p>Набор команд (например, /fly, god, gm 3 и множество других) для комфортных съёмок</p>
+        </div>
+        <div class="benefit-item">
+            <span class="icon"><i class="fas fa-bullhorn"></i></span>
+            <h4>Поддержка</h4>
+            <p>Публикуем твои ролики — игроки их увидят</p>
+        </div>
+    </div>
+</section>
+<section class="template-box">
+    <h2>Как подать заявку</h2>
+    <p class="sub">Перейди в Discord-форум стать-медиа и отправь сообщение по шаблону</p>
+    <div class="code-block">
+        1. Твой ник на сервере:
+        2. Ссылка на канал (YouTube / TikTok / Twitch):
+        3. Ссылка на ролик или стрим, который ты уже снял(а) про наш сервер:
+
+        После этого мы изучим твою заявку и выдадим роль в течение дня!
+    </div>
+    <div class="btn-group">
+        <a href="https://discord.gg/6tgcvpuRXX" class="btn-media" target="_blank">
+            <i class="fab fa-discord"></i> Подать заявку в Discord канале
+        </a>
+    </div>
+</section>
+<section class="cta-section">
+    <h2>Больше контента — в Discord</h2>
+    <p>Следи за свежими видео в канале <strong>творчество</strong>.<br>Снимаешь сам? Подавай заявку и вливайся в медиа-команду!</p>
+    <a href="https://discord.gg/6tgcvpuRXX" class="btn-media" target="_blank">
+        <i class="fab fa-discord"></i> Перейти в Discord
+    </a>
+</section>
+
+<footer class="footer-plate">
+    <div class="footer-container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <span class="logo" style="font-size: 1.3rem;">ApexSphere</span>
+                <p class="footer-subtitle">Игровой проект</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 ApexSphere — Все права защищены.</p>
+                <p class="footer-small">ApexSphere не связан с MojangAB, все средства идут на развитие проекта.</p>
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <h4 class="footer-nav-title">Навигация</h4>
+            <ul class="footer-nav-list">
+                <li><a href="../nav-list/privacy.html" data-en="privacy" data-ru="Политика">Политика конфиденциальности</a></li>
+                <li><a href="../rules/index.html" data-en="Rules" data-ru="Правила">Правила проекта</a></li>
+                <li><a href="../nav-list/contacts.html" data-en="contacts" data-ru="Контакты">Контакты</a></li>
+                <li><a href="../nav-list/referral.html" data-en="Referral" data-ru="Рефералка">Реферальная система</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-payments">
+            <h4 class="footer-nav-title">Мы принимаем:</h4>
+            <div class="payment-icons">
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <circle cx="20" cy="14" r="8" fill="#55ff55" opacity="0.8"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">СБП</text>
+                    </svg>
+                    <span>Система быстрых платежей (РФ)</span>
+                </div>
+                <div class="payment-item">
+                    <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
+                        <rect width="40" height="28" rx="4" fill="#1a2a55"/>
+                        <text x="20" y="18" text-anchor="middle" fill="#fff" font-size="7" font-weight="bold">🛒</text>
+                    </svg>
+                    <span>FunPay (РФ/СНГ)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<footer>
+    <p>Authors: <strong>Fassykite, fx_moli</strong> | &copy; 2026 <strong>ApexSphere Project</strong></p>
+</footer>
+<script src="../js/script.js" defer></script>
+</body>
+</html>
