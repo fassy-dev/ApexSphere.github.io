@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApexSphere — Оформление заказа</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1">
     <style>
         .pay-section {
@@ -153,7 +157,7 @@
         </div>
 
         <!-- Форма для ввода ника -->
-        <form id="payment-form" onsubmit="processPayment(e)">
+        <form id="payment-form">
             <div class="input-group">
                 <label for="nickname">Введите ваш игровой никнейм:</label>
                 <input type="text" id="nickname" required placeholder="Например: Fassykite" autocomplete="off">
@@ -256,6 +260,7 @@
     </p>
 </footer>
 
+<script src="js/config.js"></script>
 <script src="js/script.js?v=15"></script>
 </body>
 </html>

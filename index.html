@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
                font-src 'self' https://fonts.gstatic.com;
-               connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us;
+               connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us https://discord.com;
                script-src 'self' 'unsafe-inline' https://www.google-analytics.com;
                img-src 'self' data: https:;">
 
     <title>ApexSphere — Пространство игровых возможностей</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
-    <link rel="backround" type="image/jpg" href="img/background.jpg">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="preload" as="image" href="img/background.jpg">
     <meta name="description" content="Официальный сайт Minecraft проекта ApexSphere. Уникальные игровые режимы, отзывчивое комьюнити и комфортная игра. Заходи, копируй IP и играй с нами!">
     <meta property="og:title" content="ApexSphere — Пространство игровых возможностей">
     <meta property="og:description" content="Официальный сайт Minecraft-проекта ApexSphere. Заходи, копируй IP и играй вместе с нами!">
@@ -93,7 +97,7 @@
             <!-- СТАТУС -->
             <div class="online-status-badge offline" id="vanilla-status">
                 <span class="status-indicator-dot"></span>
-                <span class="status-count-text" id="server-status">⏳ Загрузка...</span>
+                <span class="status-count-text" id="vanilla-server-status">⏳ Загрузка...</span>
             </div>
             <p class="donate-desc">Классическое выживание и честное комьюнити. Исследуй дикий бескрайний мир, строй города и создавай свою историю без ограничений.</p>
 
@@ -112,7 +116,7 @@
             <h3>Anarchy 1.16.5+ (Сервер недоступен)</h3>
             <div class="online-status-badge offline" id="anarchy-status">
                 <span class="status-indicator-dot"></span>
-                <span class="status-count-text" id="server-status">⏳ Недоступен</span>
+                <span class="status-count-text" id="anarchy-server-status">⏳ Недоступен</span>
             </div>
             <p class="donate-desc">Анархия, твори что хочешь, развивайся, строй базы, всё в твоих руках! (Сервер недоступен).</p>
             <p>Адрес сервера:</p>
@@ -154,6 +158,9 @@
 
 <section id="shop" class="reveal">
     <h2>Магазин услуг</h2>
+    <p style="text-align: center; font-size: 0.8rem; opacity: 0.6; margin-bottom: 30px;">
+        Оплачивая услуги, вы соглашаетесь с <a href="nav-list/offer.html" style="color: var(--cyan);">договором оферты</a>
+    </p>
 
     <div class="shop-tabs" role="tablist">
         <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchShopTab('vanilla', this)">🔅 Сервер Vanilla</button>
@@ -190,8 +197,9 @@
                     </details>
                 </div>
                 <span class="price">150₽</span>
-                <a href="pay.html?item=VIP Статус&price=150&desc=Выделяйся среди игроков" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="https://funpay.com/lots/offer?id=72651450" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=VIP Статус&price=150&desc=Выделяйся среди игроков" class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="https://funpay.com/lots/offer?id=72651450" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить через стороннее средство (FunPay)</a>
+                <button class="btn-base buy-btn-main upgrade-btn" onclick="openUpgradeModal('VIP', 150, 'vanilla')" style="background: linear-gradient(135deg, #ff6b9d, #ff3d6f); margin-top: 8px;">🔄 Перенести / Апгрейд</button>
             </div>
 
             <!-- Premium -->
@@ -219,8 +227,9 @@
                     </details>
                 </div>
                 <span class="price">350₽</span>
-                <a href="pay.html?item=Premium&price=350&desc=Максимальный комфорт" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="https://funpay.com/lots/offer?id=72651375" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Premium&price=350&desc=Максимальный комфорт" class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="https://funpay.com/lots/offer?id=72651375" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить через стороннее средство (FunPay)</a>
+                <button class="btn-base buy-btn-main upgrade-btn" onclick="openUpgradeModal('Premium', 350, 'vanilla')" style="background: linear-gradient(135deg, #ff6b9d, #ff3d6f); margin-top: 8px;">🔄 Перенести / Апгрейд</button>
             </div>
 
             <div class="card donate-card">
@@ -229,8 +238,8 @@
                     <p class="donate-desc">Доступ к команде <code>/fly</code> ровно на 24 часа.</p>
                 </div>
                 <span class="price">25₽</span>
-                <a href="pay.html?item=Режим Полёта&price=25&desc=Доступ к /fly на 24 часа" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="https://funpay.com/lots/offer?id=72679394" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Режим Полёта&price=25&desc=Доступ к /fly на 24 часа" class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="https://funpay.com/lots/offer?id=72679394" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить через стороннее средство (FunPay)</a>
             </div>
 
             <div class="card donate-card">
@@ -239,8 +248,8 @@
                     <p class="donate-desc">Вас не разбанят если были забанены по IP</p>
                 </div>
                 <span class="price">100₽</span>
-                <a href="pay.html?item=Разбан&price=100&desc=Снятие блокировки аккаунта" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="https://funpay.com/lots/offer?id=72651561" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Разбан&price=100&desc=Снятие блокировки аккаунта" class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="https://funpay.com/lots/offer?id=72651561" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить через стороннее средство (FunPay)</a>
             </div>
 
             <div class="card donate-card">
@@ -249,8 +258,8 @@
                     <p class="donate-desc">Размут (Снятие блокировки чата)</p>
                 </div>
                 <span class="price">50₽</span>
-                <a href="pay.html?item=Размут&price=50&desc=Снятие блокировки чата" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="https://funpay.com/lots/offer?id=72632098" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Размут&price=50&desc=Снятие блокировки чата" class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="https://funpay.com/lots/offer?id=72632098" target="_blank" rel="noopener" class="btn-base buy-btn-main">🛒 Оплатить через стороннее средство (FunPay)</a>
             </div>
         </div>
     </div>
@@ -264,17 +273,17 @@
                     <p class="donate-desc">Испытай удачу! Кейс с крутыми донат-привилегиями.</p>
                 </div>
                 <span class="price">39₽</span>
-                <a href="pay.html?item=Донат-Кейс 📦&price=39&desc=Испытай удачу! Кейс с крутыми донат-привилегиями." class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="#" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Донат-Кейс 📦&price=39&desc=Испытай удачу! Кейс с крутыми донат-привилегиями." class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="#" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить через стороннее средство (FunPay)</a>
             </div>
             <div class="card donate-card">
                 <div class="card-top">
-                    <h3>Титан [Привилегия]</h3>
+                    <h3>Титан </h3>
                     <p class="donate-desc">Топовый статус на Анархии: доступ к силе титанов.</p>
                 </div>
                 <span class="price">790₽</span>
-                <a href="pay.html?item=Титан [Привилегия]&price=790&desc=Топовый статус на Анархии: доступ к силе титанов." class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="#" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Титан &price=790&desc=Топовый статус на Анархии: доступ к силе титанов." class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="#" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить через стороннее средство (FunPay)</a>
             </div>
 
             <div class="card donate-card">
@@ -283,8 +292,8 @@
                     <p class="donate-desc">Вас не разбанят если были забанены по IP</p>
                 </div>
                 <span class="price">100₽</span>
-                <a href="pay.html?item=Разбан&price=100&desc=Снятие блокировки аккаунта" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="#" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Разбан&price=100&desc=Снятие блокировки аккаунта" class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="#" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить через стороннее средство (FunPay)</a>
             </div>
 
             <div class="card donate-card">
@@ -293,8 +302,9 @@
                     <p class="donate-desc">Размут (Снятие блокировки чата)</p>
                 </div>
                 <span class="price">50₽</span>
-                <a href="pay.html?item=Размут&price=50&desc=Снятие блокировки чата" class="btn-base buy-btn-main disabled">⚡ Оплатить через СБП (РФ)</a>
-                <a href="https://funpay.com/lots/offer?id=72632098" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить на FunPay (РФ/СНГ)</a>
+                <a href="pay.html?item=Размут&price=50&desc=Снятие блокировки чата" class="btn-base buy-btn-main disabled">⚡ Оплатить через основное средство (Lava)</a>
+                <a href="https://funpay.com/lots/offer?id=72632098" target="_blank" rel="noopener" class="btn-base buy-btn-main disabled">🛒 Оплатить через стороннее средство (FunPay)</a>
+                <button class="btn-base buy-btn-main upgrade-btn" onclick="openUpgradeModal('VIP', 150, 'vanilla')" style="background: linear-gradient(135deg, #ff6b9d, #ff3d6f); margin-top: 8px;">🔄 Перенести / Апгрейд</button>
             </div>
         </div>
     </div>
@@ -427,6 +437,7 @@
             <h4 class="footer-nav-title">Навигация</h4>
             <ul class="footer-nav-list">
                 <li><a href="nav-list/privacy.html" data-en="privacy" data-ru="Политика">Политика конфиденциальности</a></li>
+                <li><a href="nav-list/offer.html">Договор оферты</a></li>
                 <li><a href="rules/index.html" data-en="Rules" data-ru="Правила">Правила проекта</a></li>
                 <li><a href="nav-list/contacts.html" data-en="contacts" data-ru="Контакты">Контакты</a></li>
                 <li><a href="nav-list/referral.html" data-en="Referral" data-ru="Рефералка">Реферальная система</a></li>
@@ -439,10 +450,10 @@
                 <div class="payment-item">
                     <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
                         <rect width="40" height="28" rx="4" fill="#1a2a55"/>
-                        <circle cx="20" cy="14" r="8" fill="#55ff55" opacity="0.8"/>
-                        <text x="20" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">СБП</text>
+                        <circle cx="20" cy="14" r="11" fill="#55ff55" opacity="0.8"/>
+                        <text x="20" y="17" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">LAVA</text>
                     </svg>
-                    <span>Система быстрых платежей (РФ)</span>
+                    <span>Система платежей "Lava"</span>
                 </div>
                 <div class="payment-item">
                     <svg width="40" height="28" viewBox="0 0 40 28" fill="none">
@@ -528,65 +539,6 @@
         }
     });
 
-    // Инициализация переключения темы
-    document.addEventListener('DOMContentLoaded', function() {
-        const themeBtn = document.getElementById('theme-toggle-btn');
-        const iconSlot = themeBtn?.querySelector('.theme-icon-slot');
-
-        // Проверяем сохраненную тему
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.body.classList.add('light-theme');
-            if (iconSlot) iconSlot.textContent = '☀️';
-        }
-
-        // Обработчик переключения
-        themeBtn?.addEventListener('click', function() {
-            document.body.classList.toggle('light-theme');
-            const isLight = document.body.classList.contains('light-theme');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            if (iconSlot) iconSlot.textContent = isLight ? '☀️' : '🌙';
-        });
-
-        // Инициализация таблицы сравнения
-        const toggleBtn = document.getElementById('toggle-compare-btn');
-        const hiddenRows = document.getElementById('compare-more');
-
-        if (toggleBtn && hiddenRows) {
-            toggleBtn.addEventListener('click', function() {
-                const isHidden = hiddenRows.classList.contains('hidden-rows');
-                if (isHidden) {
-                    hiddenRows.classList.remove('hidden-rows');
-                    toggleBtn.textContent = '🔼 Свернуть';
-                    toggleBtn.setAttribute('aria-expanded', 'true');
-                } else {
-                    hiddenRows.classList.add('hidden-rows');
-                    toggleBtn.textContent = '🔽 Раскрыть полностью';
-                    toggleBtn.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    });
-
-    // Функция переключения вкладок магазина
-    function switchShopTab(tabId, btn) {
-        document.querySelectorAll('.shop-content-tab').forEach(tab => {
-            tab.classList.remove('active');
-            tab.hidden = true;
-        });
-        document.querySelectorAll('.tab-btn').forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-        });
-
-        const target = document.getElementById('shop-' + tabId);
-        if (target) {
-            target.classList.add('active');
-            target.hidden = false;
-        }
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-    }
 </script>
 
 <!-- Уведомление о куках -->
@@ -619,12 +571,25 @@
             </div>
         </div>
     </div>
-</div>
 
 <button class="notification-toggle" id="notificationToggle" onclick="document.getElementById('notificationPanel').classList.add('active')">
     🔔
 </button>
 
+<div class="upgrade-modal" id="upgradeModal" aria-hidden="true">
+    <div class="upgrade-modal__backdrop" data-upgrade-close></div>
+    <div class="upgrade-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="upgradeModalTitle">
+        <button class="upgrade-modal__close" type="button" aria-label="Закрыть окно апгрейда" data-upgrade-close>✕</button>
+        <h3 id="upgradeModalTitle">Перенос или апгрейд</h3>
+        <p id="upgradeModalText">Выберите удобный способ связи, и администрация поможет перенести покупку или оформить апгрейд.</p>
+        <div class="upgrade-modal__actions">
+            <a class="btn-base social-link ds" href="https://discord.gg/QeWAYQmsEK" target="_blank" rel="noopener">Discord тикет</a>
+            <a class="btn-base social-link tg" href="https://t.me/ApexSphereMine" target="_blank" rel="noopener">Telegram</a>
+        </div>
+    </div>
+</div>
+
+<script src="js/config.js" defer></script>
 <script src="js/script.js" defer></script>
 <script>
     (function() {

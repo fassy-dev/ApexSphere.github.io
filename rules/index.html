@@ -2,11 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us https://discord.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Правила - ApexSphere</title>
-    <link rel="icon" type="image/png" href="../img/logo.png">
-    <link rel="backround" type="image/jpg" href="../img/background.jpg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" href="../img/favicon.ico">
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="preload" as="image" href="../img/background.jpg">
     <link href="https://fonts.googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <style>
@@ -290,6 +294,7 @@
 }
 createParticles();
 </script>
+<script src="../js/config.js"></script>
 <script src="../js/script.js"></script>
 </body>
 </html>

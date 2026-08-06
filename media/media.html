@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'self';
-               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
                font-src 'self' https://fonts.gstatic.com;
-               connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us;
+               connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us https://discord.com;
                script-src 'self' 'unsafe-inline' https://www.google-analytics.com;
                img-src 'self' data: https:;">
 
-    <title>Медиа — ApexSphere</title>
     <meta property="og:type" content="website">
     <title>ApexSphere — Пространство игровых возможностей</title>
-    <link rel="icon" type="image/png" href="../img/logo.png">
-    <link rel="backround" type="image/jpg" href="../img/background.jpg">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" href="../img/favicon.ico">
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="preload" as="image" href="../img/background.jpg">
     <meta property="og:description" content="Официальный сайт Minecraft-проекта ApexSphere. Заходи, копируй IP и играй вместе с нами!">
     <meta name="description" content="Официальный сайт Minecraft проекта ApexSphere. Уникальные игровые режимы, отзывчивое комьюнити и комфортная игра. Заходи, копируй IP и играй с нами!">
     <meta property="og:image" content="https://apexsphere.ru/img/og-image.png">
@@ -370,6 +373,7 @@
     </p>
 </footer>
 
+<script src="../js/config.js" defer></script>
 <script src="../js/script.js" defer></script>
 </body>
 </html>

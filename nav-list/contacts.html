@@ -2,10 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.mcstatus.io https://api.mcsrvstat.us https://discord.com; script-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты — ApexSphere</title>
-    <link rel="icon" type="image/png" href="../img/logo.png">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" href="../img/favicon.ico">
+    <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="preload" as="image" href="../img/background.jpg">
     <meta name="description" content="Связь с администрацией ApexSphere. Discord, Telegram и другие способы связи.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +19,6 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <style>
-        /* Дополнительные стили для страницы контактов */
         .contacts-page {
             padding-top: 120px;
             min-height: 100vh;
@@ -133,7 +137,6 @@
             box-shadow: 0 0 25px rgba(0, 255, 224, 0.4);
         }
 
-        /* Цветовые варианты */
         .contact-card-main.discord-card {
             border-color: rgba(88, 101, 242, 0.3);
         }
@@ -270,7 +273,6 @@
     </nav>
 </header>
 
-<!-- Основной контент -->
 <div class="contacts-page">
     <section class="contacts-header">
         <h1>📞 Контакты</h1>
@@ -278,7 +280,6 @@
     </section>
 
     <div class="contacts-grid-main">
-        <!-- Discord -->
         <a href="https://discord.gg/6tgcvpuRXX" target="_blank" rel="noopener" class="contact-card-main discord-card">
             <div class="contact-icon-big">💬</div>
             <h3>Discord</h3>
@@ -286,7 +287,6 @@
             <span class="contact-btn">Перейти →</span>
         </a>
 
-        <!-- Telegram Канал -->
         <a href="https://t.me/ApexSphereMine" target="_blank" rel="noopener" class="contact-card-main telegram-card">
             <div class="contact-icon-big">📢</div>
             <h3>Telegram Канал</h3>
@@ -302,11 +302,10 @@
             <span class="contact-btn">Перейти →</span>
         </a> -->
 
-        <!-- Email -->
         <a href="../email/emailsend.html" class="contact-card-main email-card">
             <div class="contact-icon-big">📧</div>
             <h3>Email</h3>
-            <p>Для деловых предложений и важных вопросов. Отвечаем в течение 24 часов.<br>(Из-за высокой загруженности срок ответа может продлиться до 48 часов)</p>
+            <p>Для деловых предложений и важных вопросов, по вопросам рекламы и сотрудничества. Отвечаем в течение 24 часов.<br>(Из-за высокой загруженности срок ответа может продлиться до 48 часов)</p>
             <span class="contact-btn">Написать →</span>
         </a>
     </div>
@@ -316,7 +315,7 @@
     <div class="contacts-info-block">
         <p>
             <strong>🕒 Время ответа:</strong> В Discord и Telegram отвечаем в течение 5-15 минут.<br>
-            <strong>📧 Email:</strong> отвечаем в течение 24 часов (Из-за высокой загруженности срок ответа может продлиться до 48 часов).<br>
+            <strong>📧 Email:</strong> Отвечаем в течение 24 часов (Из-за высокой загруженности срок ответа может продлиться до 48 часов).<br>
             <strong>🌐 Сайт:</strong> <a href="../index.html" style="color: var(--cyan); text-decoration: none;">apexsphere.ru</a>
         </p>
     </div>
@@ -386,6 +385,7 @@
     </p>
 </footer>
 
+<script src="../js/config.js" defer></script>
 <script src="../js/script.js" defer></script>
 </body>
 </html>

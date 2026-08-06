@@ -1,101 +1,26 @@
-// ============================================
-// 1. НАСТРОЙКИ
-// ============================================
-const ALLOWED_DOMAINS = [
-    'apexsphere.ru',
-    'www.apexsphere.ru',
-    'apexsphere.github.io',
-    'ApexSphere.github.io',
-    'localhost'  // Для локальной разработки
-];
+const APEX_CONFIG = window.APEX_CONFIG || {
+    productionHosts: ['apexsphere.ru', 'www.apexsphere.ru', 'apexsphere.github.io'],
+    servers: {
+        vanilla: {
+            publicIp: 'play.apexsphere.ru',
+            statusEndpoint: 'https://api.mcstatus.io/v2/status/java/play.apexsphere.ru:25565'
+        }
+    },
+    social: {
+        discordApiInvite: 'https://discord.com/api/v9/invites/QeWAYQmsEK?with_counts=true'
+    }
+};
 
-const ALLOWED_PORTS = [
-    '80',    // HTTP
-    '443',   // HTTPS
-    '63342'  // Порт WebStorm/PhpStorm для локальной разработки
-];
-
-// ============================================
-// 2. ОСНОВНАЯ ПРОВЕРКА ДОСТУПА
-// ============================================
-function checkAccess() {
+function enforceHttpsOnProduction() {
     const host = window.location.hostname.toLowerCase();
-    const port = window.location.port || (window.location.protocol === 'https:' ? '443' : '80');
-    const protocol = window.location.protocol;
+    const isProductionHost = APEX_CONFIG.productionHosts.includes(host);
 
-
-    if (!ALLOWED_DOMAINS.includes(host)) {
-        document.body.innerHTML = `
-            <h2>🔒 Доступ запрещен</h2>
-            <p>Сайт доступен только по адресу: <strong>apexsphere.ru</strong></p>
-            <p>Пожалуйста, перейдите по правильному адресу.</p>
-        `;
-        throw new Error('Несанкционированный доступ: неверный домен');
+    if (isProductionHost && window.location.protocol === 'http:') {
+        window.location.replace(`https://${host}${window.location.pathname}${window.location.search}`);
     }
-
-    if (host === 'localhost' && !ALLOWED_PORTS.includes(port)) {
-        document.body.innerHTML = `
-            <h2>🔒 Доступ запрещен</h2>
-            <p>Локальный доступ разрешен только на портах: ${ALLOWED_PORTS.join(', ')}</p>
-        `;
-        throw new Error('Несанкционированный доступ: неверный порт');
-    }
-
-    if (host !== 'localhost' && protocol !== 'https:') {
-        window.location.href = 'https://' + host + window.location.pathname + window.location.search;
-        return false;
-    }
-
-    if (host.match(/^\d+\.\d+\.\d+\.\d+$/)) {
-        document.body.innerHTML = `
-            <h2>🔒 Доступ запрещен</h2>
-            <p>Доступ к сайту по IP-адресу запрещен.</p>
-            <p>Используйте доменное имя: <strong>apexsphere.ru</strong></p>
-        `;
-        throw new Error('Несанкционированный доступ: доступ по IP запрещен');
-    }
-
-    const isBot = detectBot();
-    if (isBot) {
-        document.body.innerHTML = `
-            <h2>🤖 Доступ запрещен</h2>
-            <p>Обнаружена подозрительная активность.</p>
-            <p>Пожалуйста, отключите VPN/прокси и обновите страницу.</p>
-        `;
-        throw new Error('Несанкционированный доступ: бот или подозрительное поведение');
-    }
-
-    return true;
 }
 
-// ============================================
-// 3. ДЕТЕКТОР БОТОВ
-// ============================================
-function detectBot() {
-    if (typeof window === 'undefined' || typeof document === 'undefined') return true;
-
-    if (screen.width < 200 || screen.height < 200) return true;
-
-    if (navigator.webdriver === true) return true;
-
-    const ua = navigator.userAgent.toLowerCase();
-    const botPatterns = ['bot', 'crawl', 'spider', 'headless', 'phantom', 'puppeteer'];
-    for (const pattern of botPatterns) {
-        if (ua.includes(pattern)) return true;
-    }
-
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-        if (!window.matchMedia('(pointer: fine)').matches) return true;
-    }
-
-    return false;
-}
-
-if (!checkAccess()) {
-    console.log('Перенаправление на HTTPS...');
-} else {
-    console.log('✅ Доступ разрешен');
-}
+enforceHttpsOnProduction();
 
 
 if ('scrollRestoration' in history) {
@@ -244,45 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-function updateServerOnline() {
-    const technicalIP = 'play.kek.team:25621';
-    const statusBadge = document.getElementById('vanilla-status');
-    const statusText = statusBadge.querySelector('.status-count-text');
-
-
-    fetch(`https://api.mcstatus.io/v2/status/java/${technicalIP}`)
-        .then(response => {
-            if (!response.ok) throw new Error('Сеть не отвечает');
-            return response.json();
-        })
-        .then(data => {
-            if (data.online) {
-
-                statusBadge.classList.remove('offline');
-                statusBadge.classList.add('online');
-                statusText.innerHTML = `Онлайн: ${data.players.online} / ${data.players.max}`;
-            } else {
-
-                statusBadge.classList.remove('online');
-                statusBadge.classList.add('offline');
-                statusText.innerText = 'Оффлайн';
-            }
-        })
-        .catch(err => {
-            console.error('Ошибка мониторинга:', err);
-            statusBadge.classList.remove('online');
-            statusBadge.classList.add('offline');
-            statusText.innerText = 'Оффлайн';
-        });
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    updateServerOnline();
-
-    setInterval(updateServerOnline, 30000);
-});
-
 const faqQuestions = document.querySelectorAll(".faq-question");
 faqQuestions.forEach(q => {
     q.addEventListener("click", () => {
@@ -409,23 +295,71 @@ document.addEventListener("DOMContentLoaded", () => {
 // ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК МАГАЗИНА (ВАНИЛЛА / АНАРХИЯ)
 // ==========================================================================
 window.switchShopTab = function(tabName, clickedBtn) {
-    // Находим все кнопки вкладок и убираем у них активный класс
     const buttons = document.querySelectorAll('.tab-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+    });
 
-    // Находим все блоки с товарами и прячем их
     const tabs = document.querySelectorAll('.shop-content-tab');
-    tabs.forEach(tab => tab.classList.remove('active'));
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.hidden = true;
+    });
 
-    // Включаем активный класс нажатой кнопке
-    clickedBtn.classList.add('active');
+    if (clickedBtn) {
+        clickedBtn.classList.add('active');
+        clickedBtn.setAttribute('aria-selected', 'true');
+    }
 
-    // Показываем нужный магазин
     const activeTab = document.getElementById(`shop-${tabName}`);
     if (activeTab) {
         activeTab.classList.add('active');
+        activeTab.hidden = false;
     }
 };
+
+window.openUpgradeModal = function(currentRank, currentPrice, serverName) {
+    const modal = document.getElementById('upgradeModal');
+    const text = document.getElementById('upgradeModalText');
+
+    if (!modal) {
+        window.open(APEX_CONFIG.social.supportInvite, '_blank', 'noopener');
+        return;
+    }
+
+    if (text) {
+        text.textContent = `Текущий статус: ${currentRank}, сервер: ${serverName}, базовая стоимость: ${currentPrice} ₽. Напишите в поддержку, и мы рассчитаем перенос или апгрейд под ваш аккаунт.`;
+    }
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+
+    const closeButton = modal.querySelector('[data-upgrade-close]');
+    if (closeButton) closeButton.focus();
+};
+
+function closeUpgradeModal() {
+    const modal = document.getElementById('upgradeModal');
+    if (!modal) return;
+
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+}
+
+document.addEventListener('click', (event) => {
+    if (event.target.closest('[data-upgrade-close]')) {
+        closeUpgradeModal();
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeUpgradeModal();
+    }
+});
 
 // Умный поиск и навигация
 class SmartSearch {
@@ -1205,8 +1139,8 @@ console.log('💡 Подсказка: нажмите кнопку 🎯 в пра
 // ==========================================
 
 async function updateServerStatus() {
-    // Находим элементы
-    const statusElement = document.getElementById('server-status');
+    const vanillaServer = APEX_CONFIG.servers.vanilla;
+    const statusElement = document.getElementById('vanilla-server-status');
     const playersElement = document.getElementById('server-players');
     const ipElement = document.getElementById('server-ip');
     const versionElement = document.getElementById('server-version');
@@ -1223,8 +1157,7 @@ async function updateServerStatus() {
     if (playersElement) playersElement.textContent = '--';
 
     try {
-        // Запрос к API (используем play.apexsphere.ru)
-        const response = await fetch('https://api.mcstatus.io/v2/status/java/play.apexsphere.ru:25565');
+        const response = await fetch(vanillaServer.statusEndpoint);
 
         if (!response.ok) {
             throw new Error(`HTTP ошибка: ${response.status}`);
@@ -1256,8 +1189,8 @@ async function updateServerStatus() {
             }
 
             // IP (если изменился)
-            if (ipElement && data.host) {
-                ipElement.textContent = `${data.host}`;
+            if (ipElement) {
+                ipElement.textContent = vanillaServer.publicIp;
             }
 
             // Версия
@@ -1352,9 +1285,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 
 function fetchDiscordMembers() {
-    const serverId = '1482463774991450314';
-
-    fetch(`https://discord.com/api/v9/invites/QeWAYQmsEK?with_counts=true`)
+    fetch(APEX_CONFIG.social.discordApiInvite)
         .then(response => response.json())
         .then(data => {
             const memberCount = document.getElementById('discord-member-count');

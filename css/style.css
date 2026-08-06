@@ -2769,3 +2769,92 @@ code {
 .notification-toggle:hover {
     background: #4752c4;
 }
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.upgrade-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.upgrade-modal.active {
+    display: flex;
+}
+
+.upgrade-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+}
+
+.upgrade-modal__dialog {
+    position: relative;
+    width: min(100%, 480px);
+    background: rgba(10, 24, 53, 0.98);
+    border: 2px solid var(--cyan);
+    border-radius: 20px;
+    box-shadow: 0 20px 70px rgba(0, 255, 224, 0.28);
+    padding: 32px;
+    text-align: center;
+}
+
+.upgrade-modal__dialog h3 {
+    margin: 0 0 14px;
+    color: var(--cyan);
+}
+
+.upgrade-modal__dialog p {
+    margin: 0;
+    color: #dbe7ff;
+    line-height: 1.55;
+}
+
+.upgrade-modal__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.upgrade-modal__close:hover,
+.upgrade-modal__close:focus-visible {
+    background: rgba(0, 255, 224, 0.18);
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+}
+
+.upgrade-modal__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.upgrade-modal__actions .btn-base {
+    padding: 14px 16px;
+}
+
+@media (max-width: 560px) {
+    .upgrade-modal__dialog {
+        padding: 28px 18px 22px;
+    }
+
+    .upgrade-modal__actions {
+        grid-template-columns: 1fr;
+    }
+}
