@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /old/
+Disallow: /update/
+Allow: /
+
+Sitemap: https://apexsphere.ru/sitemap.xml
